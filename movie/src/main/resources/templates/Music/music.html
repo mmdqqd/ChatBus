@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #player {
+            width: 300px;
+            height: 40px;
+            background-color: #f1f1f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="player"></div>
+
+<script>
+    // 创建一个新的Audio元素
+    var audio = new Audio('http://localhost:8080/music/1610336364110.mp3');
+
+    // 定义播放和暂停函数
+    function playMusic() {
+        audio.play();
+    }
+
+    function pauseMusic() {
+        audio.pause();
+    }
+
+    // 初始化按钮
+    document.getElementById('player').addEventListener('click', function() {
+        if (audio.paused) {
+            playMusic();
+            this.textContent = '暂停';
+        } else {
+            pauseMusic();
+            this.textContent = '播放';
+        }
+    });
+</script>
+</body>
+</html>

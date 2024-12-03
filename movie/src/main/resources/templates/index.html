@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="en">
+  <head>
+    <title>Home </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,300i,400,500,600,700,800,900,900i%7CRoboto+Mono:100,300,300i,400,400i,500,500i,700,700i">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
+   <style>
+    .google-map-container {
+    width: 1706.67px;
+    height: 250px;
+    }
+
+    .amap-icon img {
+    width: 25px;
+    height: 34px;
+    }
+
+    .amap-marker-label {
+    border: 0;
+    background-color: transparent;
+    }
+
+    .info {
+    position: relative;
+    margin: 0;
+    top: -50px;
+    right: 100px;
+    min-width: 0;
+    }
+   </style>
+  </head>
+  <body>
+    <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+    <div class="preloader">
+      <div class="preloader-body">
+        <div class="cssload-container">
+          <div class="cssload-speeding-wheel"></div>
+        </div>
+        <p>Loading...</p>
+      </div>
+    </div>
+    <div class="page">
+      <!-- Page Header-->
+      <header class="section page-header">
+        <!-- RD Navbar-->
+        <div class="rd-navbar-wrap">
+          <nav class="rd-navbar rd-navbar-modern" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-lg-stick-up-offset="46px" data-xl-stick-up-offset="46px" data-xxl-stick-up-offset="46px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
+            <div class="rd-navbar-main-outer">
+              <div class="rd-navbar-main">
+                <!-- RD Navbar Panel-->
+                <div class="rd-navbar-panel">
+                  <!-- RD Navbar Toggle-->
+                  <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+                  <!-- RD Navbar Brand-->
+                  <div class="rd-navbar-brand"><a href="index.html"><img class="brand-logo-light" src="images/logo-default-207x45.png" alt="" width="207" height="45"/></a></div>
+                </div>
+                <div class="rd-navbar-main-element"> 
+                  <div class="rd-navbar-nav-wrap">
+                    <!-- RD Navbar Nav-->
+                    <ul class="rd-navbar-nav">
+                      <li class="rd-nav-item active"><a class="rd-nav-link" href="/userindex">电影首页</a>
+<!--                      <li class="rd-nav-item active"><a class="rd-nav-link" href="index.html">Home</a>-->
+                      </li>
+                      <li class="rd-nav-item"><a class="rd-nav-link" >查看你的个人信息</a>
+                        <!-- RD Navbar Dropdown-->
+                        <ul class="rd-menu rd-navbar-dropdown">
+                          <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="/user">点击查看</a></li>
+                          <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="/CrudUser">点击修改</a></li>
+                          <li class="rd-dropdown-item" id="admin-link" style="display: none;">
+                            <a class="rd-dropdown-link" href="/admin">管理员修改处</a>
+                          </li>
+<!--                          <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="/admin">管理员修改处</a></li>-->
+                        </ul>
+                      </li>
+                      <li class="rd-nav-item"><a class="rd-nav-link" href="/music">音乐首页</a>
+                      </li>
+                      <li class="rd-nav-item"><a class="rd-nav-link" href="#">留言板</a>
+                        <!-- RD Navbar Megamenu-->
+                        <ul class="rd-menu rd-navbar-megamenu">
+                          <li class="rd-megamenu-item">
+                            <h6 class="rd-megamenu-title">Pages 1</h6>
+                            <ul class="rd-megamenu-list">
+                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="typography.html">Typography</a></li>
+                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="buttons.html">Buttons</a></li>
+                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="timers-&amp;-counters.html">Timers &amp; Counters</a></li>
+                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="forms.html">Forms</a></li>
+                            </ul>
+                          </li>
+                          <li class="rd-megamenu-item">
+                            <h6 class="rd-megamenu-title">Pages 2</h6>
+                            <ul class="rd-megamenu-list">
+                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="grid-system.html">Grid system</a></li>
+                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="icon-lists.html">Icon Lists</a></li>
+                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="privacy-policy.html">Privacy policy</a></li>
+                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="coming-soon.html">Coming Soon</a></li>
+                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="search-results.html">Search results</a></li>
+                            </ul>
+                          </li>
+                          <li class="rd-megamenu-item">
+                            <h6 class="rd-megamenu-title">Pages 3</h6>
+                            <ul class="rd-megamenu-list">
+                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="gallery-1.html">Gallery 1</a></li>
+                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="gallery-2.html">Gallery 2</a></li>
+                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="news.html">News</a></li>
+                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="news-2.html">News 2</a></li>
+                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="blog-post.html">Blog Post</a></li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="rd-nav-item"><a class="rd-nav-link" href="/houtaiindex">后台</a>
+                      </li>
+                    </ul><a class="button button-default-outline button-md" href="/login">登出</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <!-- Swiper-->
+      <section class="section section-lg section-main-bunner">
+        <div class="main-bunner-img" style="background-image: url(&quot;images/bg-bunner-1.jpg&quot;); background-size: cover;"></div>
+        <div class="main-bunner-inner offset-top-140">
+          <div class="container">
+            <div class="row justify-content-lg-between align-items-lg-center">
+              <div class="col-lg-2 order-lg-2 text-center text-lg-right">
+                <div class="block-video-button"><a href="http://localhost:8080/music/1610336364110.mp3" data-lightgallery="item"><span class="icon fa-play icon-md"></span></a></div>
+              </div>
+              <div class="col-12 col-lg-9 col-xl-6 order-lg-1 text-center text-lg-left">
+                <h2 class="offset-top-30">欢迎来到影音巴士</h2>
+                <h4 class="font-weight-regular text-opacity-80">影音巴士提供电影全方位测评以及音乐鉴赏等各数据的统计.</h4>
+<!--                <a class="button button-lg button-secondary" href="#">-->
+                  立刻加入我们
+<!--                </a>-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section section-lg bg-gray-1 text-center">
+        <div class="container">
+          <div class="row row-50">
+            <div class="col-md-6 col-lg-4 wow-outer">
+              <div class="wow slideInLeft">
+                <div class="box-icon-classic">
+                  <div class="box-icon-inner decorate-triangle decorate-color-secondary"><span class="icon-xl text-primary linearicons-users2"></span></div>
+                  <div class="box-icon-caption">
+                    <h4><a href="#">最年轻的影音交友平台</a></h4>
+                    <p class="context-dark-lighter-1">我们是年轻人的朋友,懂年轻人所想,年轻人所需要的,具有活力的平台.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow-outer">
+              <div class="wow slideInDown">
+                <div class="box-icon-classic">
+                  <div class="box-icon-inner decorate-circle decorate-color-secondary-2"><span class="icon-xl text-primary linearicons-radar"></span></div>
+                  <div class="box-icon-caption">
+                    <h4><a href="#">创新点</a></h4>
+                    <p class="context-dark-lighter-1">我们不仅做到了电影影迷评论，而且能根据音乐搜索点击量为你推荐每日点击量最高的流行音乐.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow-outer">
+              <div class="wow slideInRight">
+                <div class="box-icon-classic">
+                  <div class="box-icon-inner decorate-rectangle decorate-color-primary"><span class="icon-xl text-primary linearicons-helicopter"></span></div>
+                  <div class="box-icon-caption">
+                    <h4><a href="#">更快的网页直达</a></h4>
+                    <p class="context-dark-lighter-1">我们网站具有高效的点击量,使客户一步点击到心仪的网站.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section section-xl bg-gray-750">
+        <div class="container">
+          <div class="row row-30 justify-content-center text-center">
+            <div class="col-12 wow-outer">
+              <div class="wow slideInDown">
+                <h3 class="title-decorate-dark title-decorate-center">音乐，电影封面速览</h3>
+              </div>
+            </div>
+            <div class="col-lg-8 wow-outer">
+              <div class="wow fadeInUp">
+                <p class="text-opacity-80 big-2 text-accent-4">各种流行音乐以及最新电影，随心测评，随时倾听.</p>
+              </div>
+            </div>
+          </div>
+          <div class="row no-gutters wow fadeInUp">
+            <div class="col-md-6 col-lg-4">
+              <div class="team-classic-2">
+                <div class="team-classic-figure"><img src="images/team-classic-1-390x252.jpg" alt="" width="390" height="252"/>
+                </div>
+                <div class="team-classic-caption">
+                  <h4><a class="team-name" href="courses.html">三体</a></h4>
+                  <p>五颗星</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <div class="team-classic-2">
+                <div class="team-classic-figure"><img src="images/team-classic-2-390x252.jpg" alt="" width="390" height="252"/>
+                </div>
+                <div class="team-classic-caption">
+                  <h4><a class="team-name" href="courses.html">金刚</a></h4>
+                  <p>4颗星</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <div class="team-classic-2">
+                <div class="team-classic-figure"><img src="images/team-classic-3-390x252.jpg" alt="" width="390" height="252"/>
+                </div>
+                <div class="team-classic-caption">
+                  <h4><a class="team-name" href="courses.html">满江红</a></h4>
+                  <p>3颗星</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <div class="team-classic-2">
+                <div class="team-classic-figure"><img src="images/team-classic-4-390x252.jpg" alt="" width="390" height="252"/>
+                </div>
+                <div class="team-classic-caption">
+                  <h4><a class="team-name" href="courses.html">OHKOHT</a></h4>
+                  <p>5颗星</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <div class="team-classic-2">
+                <div class="team-classic-figure"><img src="images/team-classic-5-390x252.jpg" alt="" width="390" height="252"/>
+                </div>
+                <div class="team-classic-caption">
+                  <h4><a class="team-name" href="courses.html">JLigui</a></h4>
+                  <p>4颗星</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <div class="team-classic-2">
+                <div class="team-classic-figure"><img src="images/team-classic-6-390x252.jpg" alt="" width="390" height="252"/>
+                </div>
+                <div class="team-classic-caption">
+                  <h4><a class="team-name" href="courses.html">ALIEN</a></h4>
+                  <p>3颗星</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section-lg section bg-gray-1">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-9 text-center wow-outer">
+              <div class="wow slideInLeft">
+                <h3 class="title-decorate-light title-decorate-center">电影推荐</h3>
+                <p class="big-2 text-accent-4">各种科幻,悬疑,爱情,动作,动漫.</p>
+              </div>
+            </div>
+          </div>
+          <div class="tabs-custom tabs-horizontal tabs-modern" id="tabs-1">
+            <div class="row no-gutters">
+              <div class="col-lg-4 col-xl-3 order-lg-2 wow-outer">
+                <div class="wow slideInRight">
+                  <ul class="nav nav-tabs nav-tabs-modern">
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#tabs-1-1" data-toggle="tab">科幻</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-2" data-toggle="tab">悬疑</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-3" data-toggle="tab">爱情</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-4" data-toggle="tab">动作</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-5" data-toggle="tab">动漫</a></li>
+                  </ul><a class="button button-lg button-primary button-tabs-modern" href="/login">登出</a>
+                </div>
+              </div>
+              <div class="col-lg-8 col-xl-9 order-lg-1 wow-outer">
+                <div class="wow slideInLeft">
+                  <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tabs-1-1">
+                      <div class="event-item-classic">
+                        <div class="event-item-classic-figure"><a href="#"><img src="images/user-1-109x109.jpg" alt="" width="109" height="109"/></a>
+                        </div>
+                        <div class="event-item-classic-caption">
+                          <p class="events-time">9:00 am - 11:00 am </p>
+                          <h4 class="event-item-classic-title"><a href="#">科幻</a></h4>
+                          <p class="big-2 event-item-classic-subtitle"> Instructor <a href="#">环太平洋</a> <span></span>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="event-item-classic">
+                        <div class="event-item-classic-figure"><a href="#"><img src="images/user-2-109x109.jpg" alt="" width="109" height="109"/></a>
+                        </div>
+                        <div class="event-item-classic-caption">
+                          <p class="events-time">11:00 am - 1:00 pm </p>
+                          <h4 class="event-item-classic-title"><a href="#">科幻</a></h4>
+                          <p class="big-2 event-item-classic-subtitle"> Instructor <a href="#">银河护卫队</a> <span></span>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="event-item-classic">
+                        <div class="event-item-classic-figure"><a href="#"><img src="images/user-3-109x109.jpg" alt="" width="109" height="109"/></a>
+                        </div>
+                        <div class="event-item-classic-caption">
+                          <p class="events-time">1:00 pm - 3:00 pm </p>
+                          <h4 class="event-item-classic-title"><a href="#">科幻</a></h4>
+                          <p class="big-2 event-item-classic-subtitle"> Instructor <a href="#">深海</a> <span></span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="tabs-1-2">
+                      <div class="event-item-classic">
+                        <div class="event-item-classic-figure"><a href="#"><img src="images/user-4-109x109.jpg" alt="" width="109" height="109"/></a>
+                        </div>
+                        <div class="event-item-classic-caption">
+                          <p class="events-time">9:00 am - 11:00 am </p>
+                          <h4 class="event-item-classic-title"><a href="#">悬疑</a></h4>
+                          <p class="big-2 event-item-classic-subtitle"> Instructor <a href="#">全民目击</a> <span></span>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="event-item-classic">
+                        <div class="event-item-classic-figure"><a href="#"><img src="images/user-5-109x109.jpg" alt="" width="109" height="109"/></a>
+                        </div>
+                        <div class="event-item-classic-caption">
+                          <p class="events-time">11:00 am - 1:00 pm </p>
+                          <h4 class="event-item-classic-title"><a href="#">悬疑</a></h4>
+                          <p class="big-2 event-item-classic-subtitle"> Instructor <a href="#">钢琴师</a> <span></span>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="event-item-classic">
+                        <div class="event-item-classic-figure"><a href="#"><img src="images/user-6-109x109.jpg" alt="" width="109" height="109"/></a>
+                        </div>
+                        <div class="event-item-classic-caption">
+                          <p class="events-time">1:00 pm - 3:00 pm </p>
+                          <h4 class="event-item-classic-title"><a href="#">悬疑</a></h4>
+                          <p class="big-2 event-item-classic-subtitle"> Instructor <a href="#">死无对证</a> <span></span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="tabs-1-3">
+                      <div class="event-item-classic">
+                        <div class="event-item-classic-figure"><a href="#"><img src="images/user-7-109x109.jpg" alt="" width="109" height="109"/></a>
+                        </div>
+                        <div class="event-item-classic-caption">
+                          <p class="events-time">9:00 am - 11:00 am </p>
+                          <h4 class="event-item-classic-title"><a href="#">爱情</a></h4>
+                          <p class="big-2 event-item-classic-subtitle"> Instructor <a href="#">宠爱</a> <span></span>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="event-item-classic">
+                        <div class="event-item-classic-figure"><a href="#"><img src="images/user-8-109x109.jpg" alt="" width="109" height="109"/></a>
+                        </div>
+                        <div class="event-item-classic-caption">
+                          <p class="events-time">11:00 am - 1:00 pm </p>
+                          <h4 class="event-item-classic-title"><a href="#">爱情</a></h4>
+                          <p class="big-2 event-item-classic-subtitle"> Instructor <a href="#">1917</a> <span></span>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="event-item-classic">
+                        <div class="event-item-classic-figure"><a href="#"><img src="images/user-9-109x109.jpg" alt="" width="109" height="109"/></a>
+                        </div>
+                        <div class="event-item-classic-caption">
+                          <p class="events-time">1:00 pm - 3:00 pm </p>
+                          <h4 class="event-item-classic-title"><a href="#">爱情</a></h4>
+                          <p class="big-2 event-item-classic-subtitle"> Instructor <a href="#">爱乐之城</a> <span></span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="tabs-1-4">
+                      <div class="event-item-classic">
+                        <div class="event-item-classic-figure"><a href="#"><img src="images/user-10-109x109.jpg" alt="" width="109" height="109"/></a>
+                        </div>
+                        <div class="event-item-classic-caption">
+                          <p class="events-time">9:00 am - 11:00 am </p>
+                          <h4 class="event-item-classic-title"><a href="#">动作</a></h4>
+                          <p class="big-2 event-item-classic-subtitle"> Instructor <a href="#">绣春刀</a> <span></span>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="event-item-classic">
+                        <div class="event-item-classic-figure"><a href="#"><img src="images/user-11-109x109.jpg" alt="" width="109" height="109"/></a>
+                        </div>
+                        <div class="event-item-classic-caption">
+                          <p class="events-time">11:00 am - 1:00 pm </p>
+                          <h4 class="event-item-classic-title"><a href="#">动作</a></h4>
+                          <p class="big-2 event-item-classic-subtitle"> Instructor <a href="#">速度与激情</a> <span></span>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="event-item-classic">
+                        <div class="event-item-classic-figure"><a href="#"><img src="images/user-12-109x109.jpg" alt="" width="109" height="109"/></a>
+                        </div>
+                        <div class="event-item-classic-caption">
+                          <p class="events-time">3:00 pm - 3:00 pm </p>
+                          <h4 class="event-item-classic-title"><a href="#">动作</a></h4>
+                          <p class="big-2 event-item-classic-subtitle"> Instructor <a href="#">美国队长</a> <span></span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="tabs-1-5">
+                      <div class="event-item-classic">
+                        <div class="event-item-classic-figure"><a href="#"><img src="images/user-13-109x109.jpg" alt="" width="109" height="109"/></a>
+                        </div>
+                        <div class="event-item-classic-caption">
+                          <p class="events-time">11:00 am - 1:00 pm </p>
+                          <h4 class="event-item-classic-title"><a href="#">动漫</a></h4>
+                          <p class="big-2 event-item-classic-subtitle"> Instructor <a href="#">哪吒</a> <span></span>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="event-item-classic">
+                        <div class="event-item-classic-figure"><a href="#"><img src="images/user-14-109x109.jpg" alt="" width="109" height="109"/></a>
+                        </div>
+                        <div class="event-item-classic-caption">
+                          <p class="events-time">3:00 pm - 3:00 pm </p>
+                          <h4 class="event-item-classic-title"><a href="#">动漫</a></h4>
+                          <p class="big-2 event-item-classic-subtitle"> Instructor <a href="#">疯狂原始人</a> <span></span>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="event-item-classic">
+                        <div class="event-item-classic-figure"><a href="#"><img src="images/user-15-109x109.jpg" alt="" width="109" height="109"/></a>
+                        </div>
+                        <div class="event-item-classic-caption">
+                          <p class="events-time">9:00 am - 11:00 am </p>
+                          <h4 class="event-item-classic-title"><a href="#">动漫</a></h4>
+                          <p class="big-2 event-item-classic-subtitle"> Instructor <a href="#">名侦探柯南</a> <span></span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section section-lg bg-default text-center">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-8 col-xl-8 wow-outer">
+              <div class="wow slideInDown">
+                <h3 class="title-decorate-light title-decorate-center">音乐明星</h3>
+                <p class="big-2">在我们的画廊里，你可以看看著名的音乐人物和杰出的音乐专辑照片.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row isotope-wrap">
+          <!-- Isotope Content-->
+          <div class="col-lg-12">
+            <div class="isotope" data-isotope-layout="masonry" data-isotope-group="gallery" data-lightgallery="group" data-lg-thumbnail="false" data-column-class=".col-lg-3">
+              <div class="row no-gutters row-condensed">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 isotope-item wow-outer" data-filter="Category 2">
+                  <div class="wow fadeInUp">
+                    <div class="gallery-item-classic box-1"><img src="images/gallery-home-2-1-480x339.jpg" alt="" width="480" height="339"/>
+                      <div class="gallery-item-classic-caption"><a href="images/gallery-home-2-1-original.jpg" data-lightgallery="item">zoom</a></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 isotope-item wow-outer" data-filter="Category 1">
+                  <div class="wow fadeInUp">
+                    <div class="gallery-item-classic box-1"><img src="images/gallery-masonry-10-480x339.jpg" alt="" width="480" height="339"/>
+                      <div class="gallery-item-classic-caption"><a href="images/gallery-masonry-10-original.jpg" data-lightgallery="item">zoom</a></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 isotope-item wow-outer" data-filter="Category 1">
+                  <div class="wow fadeInUp">
+                    <div class="gallery-item-classic box-1"><img src="images/gallery-home-2-2-480x611.jpg" alt="" width="480" height="611"/>
+                      <div class="gallery-item-classic-caption"><a href="images/gallery-home-2-2-original.jpg" data-lightgallery="item">zoom</a></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 isotope-item wow-outer" data-filter="Category 1">
+                  <div class="wow fadeInUp">
+                    <div class="gallery-item-classic box-1"><img src="images/gallery-masonry-11-480x445.jpg" alt="" width="480" height="445"/>
+                      <div class="gallery-item-classic-caption"><a href="images/gallery-masonry-13-original.jpg" data-lightgallery="item">zoom</a></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 isotope-item wow-outer" data-filter="Category 1">
+                  <div class="wow fadeInUp">
+                    <div class="gallery-item-classic box-1"><img src="images/gallery-masonry-7-480x339.jpg" alt="" width="480" height="339"/>
+                      <div class="gallery-item-classic-caption"><a href="images/gallery-masonry-7-original.jpg" data-lightgallery="item">zoom</a></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 isotope-item wow-outer" data-filter="Category 2">
+                  <div class="wow fadeInUp">
+                    <div class="gallery-item-classic box-1"><img src="images/gallery-home-2-3-480x445.jpg" alt="" width="480" height="445"/>
+                      <div class="gallery-item-classic-caption"><a href="images/gallery-13-original.jpg" data-lightgallery="item">zoom</a></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 isotope-item wow-outer" data-filter="Category 2">
+                  <div class="wow fadeInUp">
+                    <div class="gallery-item-classic box-1"><img src="images/gallery-home-2-4-480x339.jpg" alt="" width="480" height="339"/>
+                      <div class="gallery-item-classic-caption"><a href="images/gallery-home-2-4-original.jpg" data-lightgallery="item">zoom</a></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="parallax-container" data-parallax-img="images/parallax-img-1.jpg">
+        <div class="parallax-content section-xl context-dark">
+          <div class="container">
+            <div class="row justify-content-end">
+              <div class="col-12 col-lg-6 wow-outer">
+                <div class="wow fadeInUp text-center text-lg-left">
+                  <h3>即刻出发</h3>
+                  <h4 class="text-opacity-80 font-weight-regular offset">点击即可速度听歌.</h4><a class="button button-lg button-secondary" href="#">Get Started</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section section-lg bg-gray-1">
+        <div class="container">
+          <div class="row row-50">
+            <div class="col-12 text-center">
+              <h3 class="title-decorate-light title-decorate-center">留言板</h3>
+            </div>
+            <div class="col-md-6 col-lg-4 wow-outer">
+              <div class="wow fadeInUp">
+                <div class="post-modern">
+                  <div class="post-modern-figure"><a href="blog-post.html"><img src="images/post-modern-1-370x255.jpg" alt="" width="370" height="255"/></a><a class="badge-primary badge" href="#">news</a></div>
+                  <div class="post-modern-caption">
+                    <p class="post-modern-date">May 11, 2024</p>
+                    <h4 class="post-modern-title"><a href="blog-post.html">最时髦的影迷聚集地</a></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow-outer">
+              <div class="wow slideInDown">
+                <div class="post-modern post-modern-reverse">
+                  <div class="post-modern-figure"><a href="blog-post.html"><img src="images/post-modern-2-370x255.jpg" alt="" width="370" height="255"/></a><a class="badge-secondary badge" href="#">news</a></div>
+                  <div class="post-modern-caption">
+                    <p class="post-modern-date">April 25, 2025</p>
+                    <h4 class="post-modern-title"><a href="blog-post.html">最酷的音乐收听渠道</a></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow-outer">
+              <div class="wow fadeInUp">
+                <div class="post-modern">
+                  <div class="post-modern-caption">
+                    <p class="post-modern-date">July 02, 2024</p>
+                    <h4 class="post-modern-title"><a href="blog-post.html">留言板</a></h4>
+                    <div class="post-modern-text">
+                      <p> 留下你的观点,我们来改进.</p>
+                    </div><a class="badge-primary badge" href="#">news</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+<!--      <section class="section">-->
+<!--        <div class="google-map-container"><iframe src="https://www.amap.com/" width="100%" height="100%" frameborder="0" style="border:0" sandbox=""></iframe></div>-->
+<!--      </section>-->
+      <section class="section">
+        <div class="google-map-container">
+          <!-- 新增地图容器 -->
+          <div id="mapContainer" style="width: 100%; height: 100%;"></div>
+        </div>
+      </section>
+      <!-- Page Footer-->
+      <footer class="section footer-classic context-dark">
+        <div class="container">
+          <div class="row row-50">
+            <div class="col-lg-8 order-lg-2 pl-xl-5 wow-outer">
+              <div class="wow slideInRight">
+                <div class="row row-50">
+                  <div class="col-12">
+                    <h5 class="footer-title">留下你的电子邮箱</h5>
+                    <!-- RD Mailform-->
+                    <form class="rd-mailform text-left rd-form-inline" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+                      <div class="form-wrap">
+                        <label class="form-label" for="subscribe-email"></label>
+                        <input class="form-input" id="subscribe-email" type="email" name="email" data-constraints="@Email @Required">
+                      </div>
+                      <div class="form-button group-sm text-center text-lg-left">
+                        <button class="button button-lg button-primary" type="submit">subscribe</button>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="col-md-6">
+                    <h5 class="footer-title">手机和地址</h5>
+                    <ul class="list-contact-info">
+                      <li><span class="icon mdi mdi-map-marker icon-md icon-secondary"></span><span class="list-item-text"><a href="#"><span class="big-2 text-accent-5"> 张家界学院</span></a></span></li>
+                      <li><span class="icon mdi mdi-phone icon-md icon-secondary"></span><span class="list-item-text big-2"><a href="tel:#">123456</a></span></li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <h5 class="footer-title">社交</h5>
+                    <p class="big-2 text-accent-5"> 关注我们以保持联系并接收即时更新。</p>
+                    <ul class="social-list">
+                      <li><a class="icon icon-sm icon-circle icon-circle-md icon-bg-white fa-facebook" href="#"></a></li>
+                      <li><a class="icon icon-sm icon-circle icon-circle-md icon-bg-white fa-instagram" href="#"></a></li>
+                      <li><a class="icon icon-sm icon-circle icon-circle-md icon-bg-white fa-twitter" href="#"></a></li>
+                      <li><a class="icon icon-sm icon-circle icon-circle-md icon-bg-white fa-facebook" href="#"> </a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 order-lg-1 pr-xl-5 wow-outer">
+              <div class="wow slideInLeft">
+                <div class="row row-30">
+                  <div class="col-12"><a href="index.html"><img src="images/logo-default-207x45.png" alt="" width="207" height="45" srcset="images/logo-default-207x45.png 2x"/></a></div>
+                  <div class="col-12">
+                    <p>影音巴士即刻出发.</p>
+                    <div class="footer-divider"></div>
+                    <p class="rights"><span>&copy;&nbsp; </span><span class="copyright-year"></span><span>&nbsp;</span><span>影音巴士</span><span>.&nbsp;</span><span>All Rights Reserved.</span><br/><span>&nbsp;</span><a href="privacy-policy.html">Privacy Policy</a>.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <div class="snackbars" id="form-output-global"></div>
+    <script src="js/core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/script.js"></script>
+    <!-- coded by Starlight-->
+    <!-- 加载地图JSAPI脚本 -->
+    <script src="https://webapi.amap.com/maps?v=2.0&key=c6831d4d523b7ea25783e67e152a86dd"></script>
+    <script>
+      var map = new AMap.Map("mapContainer", { // 使用新的容器ID
+        viewMode: "2D",
+        zoom: 14,
+        center: [110.455929, 29.150054],
+        dragEnable: false, // 禁止拖动
+        zoomEnable: true,  // 允许缩放
+      });
+
+      var marker = new AMap.Marker({
+        position: map.getCenter(),
+        icon: "//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png",
+        anchor: "bottom-center",
+        offset: new AMap.Pixel(0, 0),
+      });
+
+      marker.setMap(map);
+      marker.setTitle("我是marker的title");
+
+      marker.setLabel({
+        direction: "right",
+        offset: new AMap.Pixel(10, 0),
+        content: "<div class='info'>欢迎来张家界学院咨询<br>1234567</br></div>",
+      });
+      map.add(marker);
+    </script>
+  <script>
+    axios.get('/role')
+            .then(function (response) {
+              // 根据角色控制后台主页链接显示
+              if (response.data.role === 'ADMIN') {
+                document.getElementById('admin-link').style.display = 'block';  // 显示后台主页链接
+              }
+            })
+            .catch(function (error) {
+              console.error("未查询到权限:", error);
+            });
+
+  </script>
+  </body>
+</html>
