@@ -757,7 +757,7 @@
             <span>首页</span>
           </a>
         </li>
-        <li id="houtai-link" style="display: none;">
+        <li>
           <a href="/zhu">
             <i class="icon_6"></i>
             <span>电影信息后台</span>
@@ -776,9 +776,9 @@
             <span>个人信息修改</span>
           </a>
         </li>
-        <li id="admin-link" style="display: none;">
+        <li>
           <a href="/admin">
-            <i class="icon_3" ></i>
+            <i class="icon_3"></i>
             <span>管理员修改</span>
           </a>
         </li>
@@ -862,7 +862,7 @@
     <div class="h_info">
       <div class="h_user">当前用户：333 , 身份：系统管理员</div>
       <div class="h_out">
-        <a href="/login">
+        <a href="#">
           <span>退出</span>
           <i></i>
         </a>
@@ -964,6 +964,11 @@
   <!--end t_right-->
 
 </div>
+
+
+</body>
+
+</html>
 <script>
   var del = document.getElementsByClassName('a_del')
   for (let i = 0; i < del.length; i++) {
@@ -971,35 +976,4 @@
       del[i].parentNode.parentNode.parentNode.remove()
     }
   }
-
-
 </script>
-<script>
-  axios.get('/role')
-          .then(function (response) {
-            // 根据角色控制后台主页链接显示
-            if (response.data.role === 'ADMIN') {
-              document.getElementById('admin-link').style.display = 'block';  // 显示后台主页链接
-            }
-          })
-          .catch(function (error) {
-            console.error("未查询到权限:", error);
-          });
-</script>
-<script>
-  axios.get('/role')
-          .then(function (response) {
-            // 根据角色控制后台主页链接显示
-            if (response.data.role === 'ADMIN') {
-              document.getElementById('houtai-link').style.display = 'block';  // 显示后台主页链接
-            }
-          })
-          .catch(function (error) {
-            console.error("未查询到权限:", error);
-          });
-
-</script>
-
-</body>
-
-</html>
