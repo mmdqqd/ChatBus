@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人信息</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa; /* 设置背景颜色 */
+        }
+        .form-container {
+            max-width: 500px; /* 最大宽度 */
+            margin: auto; /* 居中 */
+            padding: 20px; /* 内边距 */
+            border-radius: 10px; /* 圆角 */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* 阴影效果 */
+            background-color: white; /* 背景颜色 */
+        }
+        h1 {
+            font-size: 2rem; /* 放大标题 */
+        }
+        .form-floating input {
+            font-size: 1.25rem; /* 放大输入框字体 */
+        }
+        .btn {
+            font-size: 1.25rem; /* 放大按钮字体 */
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <form th:action="@{/user}" method="get">
+        <h1 class="h3 mb-4 fw-normal text-center">个人信息</h1>
+
+        <!-- 用户名展示 -->
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="username" id="username" th:value="${user.username}" readonly>
+            <label for="username">用户账户</label>
+        </div>
+
+        <!-- 密码展示 (加密后密码, 这里我们假设密码是加密的，所以通常不会显示) -->
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" name="password" id="password" th:value="${user.password}" readonly>
+            <label for="password">密码</label>
+        </div>
+
+        <!-- 角色展示 -->
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="role" id="role" th:value="${user.role}" readonly>
+            <label for="role">角色等级</label>
+        </div>
+
+        <!-- 提交按钮 -->
+        <button class="btn btn-primary edit-button w-100" type="button" id="returnHomeButton">返回首页</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('returnHomeButton').addEventListener('click', function() {
+        window.location.href = '/index';
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
