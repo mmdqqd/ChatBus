@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music List</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+  <a href="/static" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+  </a>
+  <ul class="nav nav-pills">
+    <li class="nav-item"><a href="/houtaiindex" class="nav-link active" aria-current="page">后台主页</a></li>&nbsp;
+  </ul>
+  <ul class="nav nav-pills">
+    <li class="nav-item"><a href="/index" class="nav-link active" aria-current="page">前台主页</a></li>
+  </ul>
+</header>
+<div class="container mt-5">
+  <h1 class="mb-4">Music List</h1>
+  <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addMusicModal">添加音乐</button>
+  <table class="table" id="musicTable">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>音乐名字</th>
+      <th>点赞数</th>
+      <th>踩数</th>
+      <th>音乐图片</th>
+      <th>修改</th>
+    </tr>
+    </thead>
+    <tbody id="musicList">
+    <!-- Music List will be populated here -->
+    </tbody>
+  </table>
+</div>
+
+<!-- 添加 Music Modal -->
+<div class="modal fade" id="addMusicModal" tabindex="-1" aria-labelledby="addMusicModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addMusicModalLabel">添加音乐</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="addMusicForm">
+          <div class="mb-3">
+            <label for="musicName" class="form-label">音乐名字</label>
+            <input type="text" class="form-control" id="musicName" required>
+          </div>
+          <div class="mb-3">
+            <label for="musicPng" class="form-label">音乐图片链接</label>
+            <input type="text" class="form-control" id="musicPng" required>
+          </div>
+          <div class="mb-3">
+            <label for="musicAddress" class="form-label">音乐链接</label>
+            <input type="text" class="form-control" id="musicAddress" required>
+          </div>
+          <div class="mb-3">
+            <label for="musicLike" class="form-label">赞</label>
+            <input type="number" class="form-control" id="musicLike" required>
+          </div>
+          <div class="mb-3">
+            <label for="musicNotLike" class="form-label">踩</label>
+            <input type="number" class="form-control" id="musicNotLike" required>
+          </div>
+          <button type="submit" class="btn btn-primary">保存</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 修改 Music Modal -->
+<div class="modal fade" id="editMusicModal" tabindex="-1" aria-labelledby="editMusicModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editMusicModalLabel">修改音乐</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="editMusicForm">
+          <input type="hidden" id="editMusicId">
+          <div class="mb-3">
+            <label for="editMusicName" class="form-label">音乐名字</label>
+            <input type="text" class="form-control" id="editMusicName" required>
+          </div>
+          <div class="mb-3">
+            <label for="editMusicPng" class="form-label">音乐图片链接</label>
+            <input type="text" class="form-control" id="editMusicPng" required>
+          </div>
+          <div class="mb-3">
+            <label for="editMusicAddress" class="form-label">音乐链接</label>
+            <input type="text" class="form-control" id="editMusicAddress" required>
+          </div>
+          <div class="mb-3">
+            <label for="editMusicLike" class="form-label">赞</label>
+            <input type="number" class="form-control" id="editMusicLike" required>
+          </div>
+          <div class="mb-3">
+            <label for="editMusicNotLike" class="form-label">踩</label>
+            <input type="number" class="form-control" id="editMusicNotLike" required>
+          </div>
+          <button type="submit" class="btn btn-primary">保存</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 删除 Confirmation Modal -->
+<div class="modal fade" id="deleteMusicModal" tabindex="-1" aria-labelledby="deleteMusicModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteMusicModalLabel">删除音乐</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>你确定删除吗?</p>
+        <button type="button" id="confirmDelete" class="btn btn-danger">确认</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // Load the music list
+    loadMusicList();
+
+
+    // Add music form submit
+    $("#addMusicForm").submit(function (e) {
+      e.preventDefault();
+      const music = {
+        musicName: $("#musicName").val(),
+        musicPng: $("#musicPng").val(),
+        musicAddress: $("#musicAddress").val(),
+        musicLike: $("#musicLike").val(),
+        musicNotLike: $("#musicNotLike").val()
+      };
+      $.ajax({
+        url: '/api/music',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(music),
+        success: function () {
+          $('#addMusicModal').modal('hide');
+          loadMusicList();
+        }
+      });
+    });
+
+    // Edit music form submit
+    $("#editMusicForm").submit(function (e) {
+      e.preventDefault();
+      const id = $("#editMusicId").val();
+      const music = {
+        id: id,
+        musicName: $("#editMusicName").val(),
+        musicPng: $("#editMusicPng").val(),
+        musicAddress: $("#editMusicAddress").val(),
+        musicLike: $("#editMusicLike").val(),
+        musicNotLike: $("#editMusicNotLike").val()
+      };
+      $.ajax({
+        url: '/api/music/' + id,
+        method: 'PUT',
+        contentType: 'application/json',
+        data: JSON.stringify(music),
+        success: function () {
+          $('#editMusicModal').modal('hide');
+          loadMusicList();
+        }
+      });
+    });
+
+    // Delete music
+    let musicToDelete;
+    $("#confirmDelete").click(function () {
+      $.ajax({
+        url: '/api/music/' + musicToDelete,
+        method: 'DELETE',
+        success: function () {
+          $('#deleteMusicModal').modal('hide');
+          loadMusicList();
+        }
+      });
+    });
+
+    // Load music list
+    function loadMusicList() {
+      $.ajax({
+        url: '/api/music',
+        method: 'GET',
+        success: function (musicList) {
+          $('#musicList').empty();
+          musicList.forEach(function (music) {
+            $('#musicList').append(`
+                        <tr>
+                            <td>${music.id}</td>
+                            <td>${music.musicName}</td>
+                            <td>${music.musicLike}</td>
+                            <td>${music.musicNotLike}</td>
+                            <td><img src="${music.musicPng}" alt="Image" width="50"></td>
+                           <td>
+              <button class="btn btn-warning edit-button" data-id="${music.id}">修改</button>
+              <button class="btn btn-danger delete-button" data-id="${music.id}">删除</button>
+            </td>
+                        </tr>
+                    `);
+          });
+        }
+      });
+    }
+// <td>
+//     <button className="btn btn-warning edit-button" data-id="${music.id}">修改</button>
+//     <button className="btn btn-danger delete-button" data-id="${music.id}">删除</button>
+// </td>
+    // Edit music
+    // function editMusic(id) {
+    //   $.ajax({
+    //     url: '/api/music/' + id,
+    //     method: 'GET',
+    //     success: function (music) {
+    //       $("#editMusicId").val(music.id);
+    //       $("#editMusicName").val(music.musicName);
+    //       $("#editMusicPng").val(music.musicPng);
+    //       $("#editMusicAddress").val(music.musicAddress);
+    //       $("#editMusicLike").val(music.musicLike);
+    //       $("#editMusicNotLike").val(music.musicNotLike);
+    //       $('#editMusicModal').modal('show');
+    //     }
+    //   });
+    // }
+    // // Confirm delete
+    // function confirmDelete(id) {
+    //   musicToDelete = id;
+    //   $('#deleteMusicModal').modal('show');
+    // }
+
+    $(document).ready(function () {
+      // Edit music
+      $(document).on('click', '.edit-button', function () {
+        var id = $(this).data('id');
+        $.ajax({
+          url: '/api/music/' + id,
+          method: 'GET',
+          success: function (music) {
+            $("#editMusicId").val(music.id);
+            $("#editMusicName").val(music.musicName);
+            $("#editMusicPng").val(music.musicPng);
+            $("#editMusicAddress").val(music.musicAddress);
+            $("#editMusicLike").val(music.musicLike);
+            $("#editMusicNotLike").val(music.musicNotLike);
+            $('#editMusicModal').modal('show');
+          }
+        });
+      });
+
+      // Confirm delete
+      $(document).on('click', '.delete-button', function () {
+        var id = $(this).data('id');
+        musicToDelete = id;
+        $('#deleteMusicModal').modal('show');
+      });
+
+      // Delete music
+      $("#confirmDelete").click(function () {
+        $.ajax({
+          url: '/api/music/' + musicToDelete,
+          method: 'DELETE',
+          success: function () {
+            $('#deleteMusicModal').modal('hide');
+            loadMusicList();
+          }
+        });
+      });
+    });
+
+
+  });
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>
