@@ -163,6 +163,10 @@
                 <input type="number" id="movieIdInput" class="form-control" placeholder="请输入电影 ID" aria-label="Movie ID" required>
                 <button class="btn btn-primary" id="searchButton">搜索</button>
             </div>
+            <div class="input-group mb-3">
+                <input type="text" id="movieNameInput" class="form-control" placeholder="请输入电影名字" aria-label="Movie" required>
+                <button class="btn btn-primary" id="searchButton1">搜索</button>
+            </div>
         </div>
     </div>
     <div id="movieDetails" class="mt-4 text-center"></div>
@@ -194,6 +198,48 @@
         });
     });
 </script>
+<script>
+    $(document).ready(function() {
+        $('#searchButton1').click(function() {
+            const movieName = $('#movieNameInput').val(); // 获取输入的电影名称
+
+            if (!movieName) {
+                alert("请先输入电影名称");
+                return;
+            }
+
+            // 使用 AJAX 请求获取模糊查询的电影信息
+            $.get(`/movies/search?name=${encodeURIComponent(movieName)}`, function(movies) {
+                console.log(movies);  // 在控制台打印返回的数据，检查它的结构
+
+                if (movies && movies.length > 0) {
+                    // 显示电影信息
+                    let movieDetails = '';
+                    movies.forEach(movie => {
+                        movieDetails += `
+                            <h2>${movie.movieName}</h2>
+                            <p><strong>ID:</strong> ${movie.id}</p>
+                            <p><strong>介绍:</strong> ${movie.movieIntroduce}</p>
+                            <p><strong>评分:</strong> ${movie.movieStar}</p>
+                            <p><strong>评价:</strong> ${movie.movieEvaluate}</p>
+                            <img src="${movie.moviePng}" alt="电影图片" width="200">
+                            <hr>
+                        `;
+                    });
+
+                    $('#movieDetails').html(movieDetails);
+                } else {
+                    alert("未找到该电影，请检查名称是否正确。");
+                }
+            }).fail(function(xhr, status, error) {
+                console.error("Error fetching movie details:", status, error);
+                alert("未找到该电影，请检查名称是否正确。");
+            });
+        });
+    });
+</script>
+
+
 <div id="foot">
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
         <symbol id="check2" viewBox="0 0 16 16">

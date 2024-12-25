@@ -20,7 +20,8 @@ public class Movie {
     //电影介绍
     private String movieIntroduce;
     //电影评分
-    private String movieStar;
+//    private String movieStar;
+    private Double movieStar;
     //电影评价
     private String movieEvaluate;
     private  String moviePng;
@@ -28,7 +29,7 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(Long id,String movieName, String movieIntroduce, String movieStar, String movieEvaluate, String moviePng) {
+    public Movie(Long id, String movieName, String movieIntroduce, Double movieStar, String movieEvaluate, String moviePng) {
         this.id = id;
         this.movieName = movieName;
         this.movieIntroduce = movieIntroduce;
@@ -78,11 +79,11 @@ public class Movie {
         this.movieIntroduce = movieIntroduce;
     }
 
-    public String getMovieStar() {
+    public Double getMovieStar() {
         return movieStar;
     }
 
-    public void setMovieStar(String movieStar) {
+    public void setMovieStar(Double movieStar) {
         this.movieStar = movieStar;
     }
 
@@ -100,15 +101,6 @@ public class Movie {
 
     public void setMoviePng(String moviePng) {
         this.moviePng = moviePng;
-    }
-
-    public String getTitle() {
-        return movieName;
-
-    }
-
-    public String getDescription() {
-        return movieIntroduce;
     }
 }
 

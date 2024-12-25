@@ -61,9 +61,44 @@ public class AuthController {
         return "Music/music";  // 返回 music.html 页面
     }
 
+    @GetMapping("/xinghuo")
+    public String xinghuo() {
+        return "AI/xinghuo";  // 返回 xinghuo.html 页面
+    }
+
+    @GetMapping("/liuyanban")
+    public String liuyanban() {
+        return "News/liuyanban";  // 返回 liuyanban.html 页面
+    }
+
+    @GetMapping("/UserNews")
+    public String UserNews() {
+        return "News/UserNews";  // 返回 UserNews.html 页面
+    }
+
+    @GetMapping("/AdminNews")
+    public String AdminNews() {
+        return "News/AdminNews";  // 返回 AdminNews.html 页面
+    }
+
+    @GetMapping("/AdminMusic")
+    public String AdminMusic() {
+        return "Music/AdminMusic";  // 返回 AdminMusic.html 页面
+    }
+
+    @GetMapping("/tubiao")
+    public String tubiao() {
+        return "Tu/tubiao";  // 返回 tubiao.html 页面
+    }
+
     @GetMapping("/houtaiindex")
     public String houtaiindex() {
-        return "Houtai/houtaiindex";  // 返回 music.html 页面
+        return "Houtai/houtaiindex";  // 返回 houtai.html 页面
+    }
+
+    @GetMapping("/houtaiindex1")
+    public String houtaiindex1() {
+        return "Houtai/houtaiindex1";  // 返回 houtai.html 页面
     }
 
     @GetMapping("/admin")

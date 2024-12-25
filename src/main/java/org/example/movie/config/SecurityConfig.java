@@ -25,7 +25,7 @@ protected void configure(HttpSecurity http) throws Exception {
     http
             .csrf().disable()  // 禁用 CSRF
             .authorizeRequests()
-            .antMatchers("/login", "/register","/images/**").permitAll()  // 允许所有人访问登录、注册和首页
+            .antMatchers("/login", "/register","/images/**","/music/**","/static/**").permitAll()  // 允许所有人访问登录、注册和首页
             .antMatchers("/Admin/adminMovieList").hasRole("ADMIN")  // 只有管理员才能访问后台主页
             .antMatchers("/ADMIN/**").hasRole("ADMIN")
             .antMatchers("/USER/**").hasRole("USER")

@@ -1,45 +1,372 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        #player {
-            width: 300px;
-            height: 40px;
-            background-color: #f1f1f1;
+        #pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .page-link {
+            padding: 8px 12px;
+            margin: 0 5px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .page-link:hover {
+            background-color: #ddd;
+        }
+
+        .page-link.active {
+            background-color: #a3cfbb;
+            color: white;
+        }
+
+        .page-link:disabled {
+            background-color: #f0f0f0;
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+
+        .navbar {
+            background-color: #5cbae6;
+            padding: 10px 20px;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+        }
+
+        .navbar a:hover {
+            background-color: #4798c5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .music-item {
+            display: flex;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f7f7f7;
+        }
+
+        .music-item img {
+            width: 200px;
+            height: auto;
+            margin-right: 20px;
+            border-radius: 5px;
+        }
+
+        .music-details {
+            flex: 1;
+        }
+
+        .music-details h2 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .music-details p {
+            margin-bottom: 8px;
+        }
+
+        .music-details button {
+            margin-right: 10px;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-info {
+            background-color: #5bc0de;
+            color: white;
+        }
+
+        .btn-warning {
+            background-color: #f0ad4e;
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: #d9534f;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #5cbae6;
+            color: white;
             margin-top: 20px;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<div id="player"></div>
+<div class="navbar">
+    <a href="/index">首页</a>
+<!--    <a href="#">音乐资讯</a>-->
+</div>
+<!-- 主体内容 -->
+<div class="container">
+    <h1>音乐列表</h1>
+    <div id="music-list">
+        <!-- 动态生成音乐列表 -->
+    </div>
+<!--    &lt;!&ndash; 音乐播放器 &ndash;&gt;-->
+<!--    <div class="player_con">-->
+<!--        <img src="/images/musicplay/player_bar.png" class="play_bar" />-->
+<!--        &lt;!&ndash; 黑胶碟片 &ndash;&gt;-->
+<!--        <img src="/images/musicplay/disc.png" id="disc" class="disc" />-->
+<!--        <img src="/images/musicplay/music_cover.jpg" id="cover" class="cover" />-->
+<!--        <audio id="audio-player" controls></audio>-->
+<!--        <button id="play-button">播放</button>-->
+<!--    </div>-->
 
+    <!-- 分页按钮 -->
+    <div id="pagination">
+        <div id="pagination-links">
+            <!-- 动态生成的页码按钮将显示在这里 -->
+        </div>
+    </div>
+</div>
+
+<!-- 页脚 -->
 <script>
-    // 创建一个新的Audio元素
-    var audio = new Audio('http://localhost:8080/music/1610336364110.mp3');
+    $(document).ready(function () {
+        const pageSize = 4;  // 每页显示的音乐数
+        let currentPage = 0;  // 当前页数
 
-    // 定义播放和暂停函数
-    function playMusic() {
-        audio.play();
-    }
+        // 加载指定页面的音乐
+        function loadPage(page) {
+            // 防止请求无效页
+            if (page < 0) return;
 
-    function pauseMusic() {
-        audio.pause();
-    }
+            currentPage = page;
+            $('#music-list').empty();  // 清空现有音乐列表
 
-    // 初始化按钮
-    document.getElementById('player').addEventListener('click', function() {
-        if (audio.paused) {
-            playMusic();
-            this.textContent = '暂停';
-        } else {
-            pauseMusic();
-            this.textContent = '播放';
+            // 发送 GET 请求，获取分页数据
+            $.get(`/api/music/a?page=${currentPage}&size=${pageSize}`, function (data) {
+                // 渲染音乐列表
+                data.content.forEach(music => {
+                    $('#music-list').append(`
+                        <div class="music-item" data-id="${music.id}">
+                            <img src="${music.musicPng}" alt="${music.musicName} 图片">
+                            <div class="music-details">
+                                <h2 style="color: #a3cfbb">音乐名: ${music.musicName}</h2>
+                                <p>
+                                    <button class="btn btn-success like-button" data-action="increment"><svg t="1734058954750" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6352" width="16" height="16"><path d="M503.466667 384L469.333333 298.666667H384v426.666666h384V384h-264.533333zM298.666667 298.666667V213.333333h256l25.6 85.333334H853.333333v512H298.666667V298.666667zM170.666667 298.666667h85.333333v512H170.666667V298.666667z" fill="#d81e06" p-id="6353"></path></svg></button>
+                                    <strong style="color: #ffca2c">点赞数:</strong> <span class="like-count">${music.musicLike}</span>
+                                </p>
+                                <p>
+                                    <button class="btn btn-success notlike-button" data-action="increment"><svg t="1734059048273" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7608" width="16" height="16"><path d="M494.933333 640l-25.6 85.333333H384V298.666667h384v341.333333h-273.066667zM298.666667 725.333333v85.333334h256l25.6-85.333334H853.333333V213.333333H298.666667v512z m-128 0h85.333333V213.333333H170.666667v512z" fill="#444444" p-id="7609"></path></svg></button>
+                                    <strong style="color: #ffca2c">踩数:</strong> <span class="notlike-count">${music.musicNotLike}</span>
+                                </p>
+                                <div class="audio-player">
+                                    <audio controls>
+                                        <source src="${music.musicAddress}" type="audio/mpeg">
+                                    </audio>
+                                </div>
+                                <p>
+            <a href="${music.musicAddress}" download="${music.musicName}.mp3" class="download-btn">
+                <!-- 下载图标 -->
+                <svg t="1735032073845" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4452" width="32" height="32">
+                    <path d="M148 641.7c0 136.1 72.6 261.9 190.5 330 117.9 68.1 263.1 68.1 381 0S910 777.9 910 641.7c0-136.1-72.6-261.9-190.5-330-117.9-68.1-263.1-68.1-381 0C220.6 379.8 148 505.6 148 641.7z m0 0" fill="#EDEDED" p-id="4453"></path>
+                    <path d="M391.6 208.7v190.5H251.8L529 711l277.1-311.8H667.6V208.7h-276z m0 0" fill="#A3D4FF" p-id="4454"></path>
+                    <path d="M529 737L213.4 381.9h161V191.4h310.5v190.5h159.8L529 737zM290.7 416.9l238.3 268 238.3-268.1h-117V226H409v190.5l-118.3 0.4z m0 0" fill="#2A5082" p-id="4455"></path>
+                    <path d="M391.6 52.8h275.9v86.6H391.6z" fill="#A3D4FF" p-id="4456"></path>
+                    <path d="M684.8 156.8H374.3V35.5h310.5v121.3zM409 122.1h241.3V70H409v52.1z m0 0" fill="#2A5082" p-id="4457"></path>
+                    <path d="M910 745.6v173.2H148V745.6h103.9v69.2h554.2v-69.2H910z m0 0" fill="#FFFFFF" p-id="4458"></path>
+                    <path d="M927.4 936.1H130.6V728.2h138.6v69.2h519.6v-69.2h138.6v207.9z m-762.2-34.7h727.4V763.2h-69.2v69.2H234.6v-69.2h-69.2l-0.2 138.2z m0 0" fill="#2A5082" p-id="4459"></path>
+                    <path d="M96 364.6h34.6v155.8H96V364.6zM754.2 0.9h34.6V278h-34.6V0.9zM96 295.3h34.6V330H96v-34.7z m0-69.3h34.6v34.6H96V226z m0 0" fill="#BCC0C4" p-id="4460"></path>
+                </svg>
+            </a>
+        </p>
+                             </div>
+                        </div>
+                    `);
+                });
+                // 点赞按钮点击事件
+                $('.like-button').on('click', function () {
+                    var musicItem = $(this).closest('.music-item');
+                    var musicId = musicItem.data('id');
+                    var action = $(this).data('action');
+
+                    $.post(`/api/music/like?id=${musicId}&action=${action}`, function (response) {
+                        if (response.status === 'success') {
+                            var likeCount = musicItem.find('.like-count');
+                            likeCount.text(parseInt(likeCount.text()) + 1); // 增加点赞数
+                        } else {
+                            alert('点赞操作失败');
+                        }
+                    });
+                });
+
+                // 踩按钮点击事件
+                $('.notlike-button').on('click', function () {
+                    var musicItem = $(this).closest('.music-item');
+                    var musicId = musicItem.data('id');
+                    var action = $(this).data('action');
+
+                    $.post(`/api/music/notlike?id=${musicId}&action=${action}`, function (response) {
+                        if (response.status === 'success') {
+                            var notLikeCount = musicItem.find('.notlike-count');
+                            notLikeCount.text(parseInt(notLikeCount.text()) + 1); // 增加踩数
+                        } else {
+                            alert('踩操作失败');
+                        }
+                    });
+                });
+                // 更新分页信息
+                updatePagination(data);
+            });
         }
+
+        // 更新分页按钮
+        function updatePagination(data) {
+            const totalPages = data.totalPages;
+            const pageLinks = $('#pagination-links');
+            pageLinks.empty();  // 清空现有分页按钮
+
+            // 显示上一页按钮
+            const prevButton = $('<button class="page-link prev">上一页</button>').on('click', function () {
+                loadPage(currentPage - 1);  // 加载上一页
+            });
+            if (currentPage === 0) {
+                prevButton.prop('disabled', true);  // 如果是第一页，禁用上一页按钮
+            }
+            pageLinks.append(prevButton);
+
+            // 显示页码按钮
+            const startPage = Math.max(0, currentPage - 2);  // 当前页前两页
+            const endPage = Math.min(totalPages - 1, currentPage + 2);  // 当前页后两页
+
+            for (let i = startPage; i <= endPage; i++) {
+                const pageLink = $('<button class="page-link"></button>')
+                    .text(i + 1)  // 显示页码（从 1 开始）
+                    .data('page', i)  // 存储页面索引
+                    .addClass(i === currentPage ? 'active' : '')  // 高亮当前页
+                    .on('click', function () {
+                        loadPage(i);  // 加载点击的页码
+                    });
+                pageLinks.append(pageLink);
+            }
+
+            // 显示下一页按钮
+            const nextButton = $('<button class="page-link next">下一页</button>').on('click', function () {
+                loadPage(currentPage + 1);  // 加载下一页
+            });
+            if (currentPage === totalPages - 1) {
+                nextButton.prop('disabled', true);  // 如果是最后一页，禁用下一页按钮
+            }
+            pageLinks.append(nextButton);
+        }
+
+        // 初始化加载第一页
+        loadPage(0);  // 默认加载第一页
+
     });
 </script>
+
+
+
+<!--<script>-->
+<!--    $(document).ready(function () {-->
+<!--        // 获取所有音乐-->
+<!--        $.get('/api/music', function (data) {-->
+<!--            data.forEach(music => {-->
+<!--                $('#music-list').append(`-->
+<!--                    <div class="music-item" data-id="${music.id}">-->
+<!--                        <img src="${music.musicPng}" alt="${music.musicName} 图片">-->
+<!--                        <div class="music-details">-->
+<!--                            <h2 style="color: #a3cfbb">音乐名: ${music.musicName}</h2>-->
+<!--                            <p>-->
+<!--                                <button class="btn btn-success like-button" data-action="increment"><svg t="1734058954750" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6352" width="16" height="16"><path d="M503.466667 384L469.333333 298.666667H384v426.666666h384V384h-264.533333zM298.666667 298.666667V213.333333h256l25.6 85.333334H853.333333v512H298.666667V298.666667zM170.666667 298.666667h85.333333v512H170.666667V298.666667z" fill="#d81e06" p-id="6353"></path></svg></button>-->
+<!--                                <strong style="color: #ffca2c">点赞数:</strong> <span class="like-count">${music.musicLike}</span>-->
+<!--                            </p>-->
+<!--                            <p>-->
+<!--                                <button class="btn btn-success notlike-button" data-action="increment"><svg t="1734059048273" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7608" width="16" height="16"><path d="M494.933333 640l-25.6 85.333333H384V298.666667h384v341.333333h-273.066667zM298.666667 725.333333v85.333334h256l25.6-85.333334H853.333333V213.333333H298.666667v512z m-128 0h85.333333V213.333333H170.666667v512z" fill="#444444" p-id="7609"></path></svg></button>-->
+<!--                                <strong style="color: #ffca2c">踩数:</strong> <span class="notlike-count">${music.musicNotLike}</span>-->
+<!--                            </p>-->
+<!--                            <div class="audio-player">-->
+<!--                                <audio controls>-->
+<!--                                    <source src="${music.musicAddress}" type="audio/mpeg">-->
+<!--                                </audio>-->
+<!--                            </div>-->
+<!--                            <p><strong style="color: #86b7fe">歌曲连接:</strong> <a href="${music.musicAddress}" target="_blank">点击访问</a></p>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                `);-->
+<!--            });-->
+<!--            // 点赞按钮点击事件-->
+<!--            $('.like-button').on('click', function () {-->
+<!--                var musicItem = $(this).closest('.music-item');-->
+<!--                var musicId = musicItem.data('id');-->
+<!--                var action = $(this).data('action');-->
+
+<!--                $.post(`/api/music/like?id=${musicId}&action=${action}`, function (response) {-->
+<!--                    if (response.status === 'success') {-->
+<!--                        var likeCount = musicItem.find('.like-count');-->
+<!--                        likeCount.text(parseInt(likeCount.text()) + 1); // 增加点赞数-->
+<!--                    } else {-->
+<!--                        alert('点赞操作失败');-->
+<!--                    }-->
+<!--                });-->
+<!--            });-->
+
+<!--            // 踩按钮点击事件-->
+<!--            $('.notlike-button').on('click', function () {-->
+<!--                var musicItem = $(this).closest('.music-item');-->
+<!--                var musicId = musicItem.data('id');-->
+<!--                var action = $(this).data('action');-->
+
+<!--                $.post(`/api/music/notlike?id=${musicId}&action=${action}`, function (response) {-->
+<!--                    if (response.status === 'success') {-->
+<!--                        var notLikeCount = musicItem.find('.notlike-count');-->
+<!--                        notLikeCount.text(parseInt(notLikeCount.text()) + 1); // 增加踩数-->
+<!--                    } else {-->
+<!--                        alert('踩操作失败');-->
+<!--                    }-->
+<!--                });-->
+<!--            });-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+
 </body>
 </html>

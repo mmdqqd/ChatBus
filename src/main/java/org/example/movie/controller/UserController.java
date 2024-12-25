@@ -12,16 +12,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 @Controller
 public class UserController {
@@ -80,18 +78,20 @@ public class UserController {
     public ResponseEntity<Map<String, String>> getUserRole(Authentication authentication) {
         // 获取当前登录用户的用户名
         String username = authentication.getName();
-
+        System.out.println(username);
         // 查询数据库获取用户角色
         UserEntity userEntity = userRepository.findByUsername(username).get();
         if (userEntity != null) {
             Map<String, String> response = new HashMap<>();
+            response.put("username", username);  // 返回用户名
             response.put("role", userEntity.getRole());  // 返回角色信息
-            System.out.println(response);
             return ResponseEntity.ok(response);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.emptyMap());
         }
     }
+
+
     @GetMapping("Admin/admin")
     public String getAllUsers(Model model) {
         // 查询所有用户

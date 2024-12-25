@@ -162,11 +162,6 @@
 
         <ul class="nav nav-pills">
           <li class="nav-item"><a href="/index" class="nav-link active" aria-current="page">主页</a></li>
-
-          <li class="nav-item" id="admin-link" style="display: none;">
-            <a href="/zhu" class="nav-link" aria-current="page">后台主页</a>
-          </li>
-
           <!--                    <li class="nav-item"><a href="/new" class="nav-link">增加信息</a></li>-->
           <!--                    <li class="nav-item"><a href="#" class="nav-link">删除信息</a></li>-->
           <!--                    <li class="nav-item"><a href="#" class="nav-link">修改信息</a></li>-->
@@ -189,17 +184,6 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
   <script>
-    axios.get('/role')
-            .then(function (response) {
-              // 根据角色控制后台主页链接显示
-              if (response.data.role === 'ADMIN') {
-                document.getElementById('admin-link').style.display = 'block';  // 显示后台主页链接
-              }
-            })
-            .catch(function (error) {
-              console.error("未查询到权限:", error);
-            });
-
     let currentPage = 0; // 当前页码
     const pageSize = 20; // 每页显示的条目数
     let totalMovies = 0; // 总电影数
@@ -252,6 +236,7 @@
       }
     }
 
+
     $(document).ready(function() {
       loadMovies(currentPage); // 加载第一页的电影列表
 
@@ -264,6 +249,7 @@
         const movieIntroduce = $('#newMovieIntroduce').val();
         const movieStar = $('#newMovieStar').val();
         const movieEvaluate = $('#newMovieEvaluate').val();
+        const moviePngFile = $('#newmoviePng')[0].files[0]; // 获取文件
         // 验证电影评分
         if (movieStar > 10 || movieStar < 1) {
           alert("评分不得大于10分或者小于1分");
@@ -275,18 +261,26 @@
           alert("评分只能有最多一位小数");
           return;
         }
-        const newMovie = {
+
+        // 创建一个 FormData 对象来处理文件上传
+        const formData = new FormData();
+        formData.append('movie', JSON.stringify({
           movieName: movieName,
           movieIntroduce: movieIntroduce,
           movieStar: movieStar,
           movieEvaluate: movieEvaluate
-        };
+        }));
 
+        // 如果有上传图片，则添加到 FormData 中
+        if (moviePngFile) {
+          formData.append('moviePng', moviePngFile);
+        }
         $.ajax({
           url: '/movies',
           type: 'POST',
-          contentType: 'application/json',
-          data: JSON.stringify(newMovie),
+          data: formData,
+          processData: false,
+          contentType: false,
           success: function(result) {
             alert("电影已添加！");
             loadMovies(currentPage); // 重新加载电影列表
@@ -365,7 +359,10 @@
       </div>
       <div class="modal-body">
         <form id="editMovieForm">
-
+          <div class="mb-3">
+            <label for="moviePng" class="form-label">电影图片</label>
+            <input type="file" class="form-control" id="moviePng" accept="image/*">
+          </div>
           <div class="mb-3">
             <label for="movieName" class="form-label">电影名称</label>
             <input type="text" class="form-control" id="movieName" required>
@@ -401,6 +398,10 @@
       </div>
       <div class="modal-body">
         <form id="addMovieForm">
+          <div class="mb-3">
+            <label for="newmoviePng" class="form-label">电影图片</label>
+            <input type="file" class="form-control" id="newmoviePng" accept="image/*">
+          </div>
           <div class="mb-3">
             <label for="newMovieName" class="form-label">电影名称</label>
             <input type="text" class="form-control" id="newMovieName" required>

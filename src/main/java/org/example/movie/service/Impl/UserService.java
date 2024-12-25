@@ -18,6 +18,11 @@ public class UserService {
         return userRepository.findByUsername(username).isPresent();
     }
 
+    // 获取所有用户的数量
+    public long getTotalUsers() {
+        return userRepository.countAllUsers();
+    }
+
     public void registerUser(String username, String encodedPassword, String role) {
         UserEntity user = new UserEntity();
         user.setUsername(username);

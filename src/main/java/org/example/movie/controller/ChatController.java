@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 public class ChatController {
 
     private static final String API_URL = "https://spark-api-open.xf-yun.com/v1/chat/completions";
-    private static final String API_KEY = "???";  // 请替换为有效的API密钥
+    private static final String API_KEY = "";  // 请替换为有效的API密钥
 
 @PostMapping
 public ResponseEntity<Map<String, String>> askModel(@RequestBody Map<String, String> userInput) {

@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/style.css">
-    <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
+    <style>
+      .ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
    <style>
     .google-map-container {
     width: 1706.67px;
@@ -61,62 +62,66 @@
                   <!-- RD Navbar Brand-->
                   <div class="rd-navbar-brand"><a href="index.html"><img class="brand-logo-light" src="images/logo-default-207x45.png" alt="" width="207" height="45"/></a></div>
                 </div>
-                <div class="rd-navbar-main-element"> 
+                <div class="rd-navbar-main-element">
                   <div class="rd-navbar-nav-wrap">
                     <!-- RD Navbar Nav-->
                     <ul class="rd-navbar-nav">
                       <li class="rd-nav-item active"><a class="rd-nav-link" href="/userindex">电影首页</a>
 <!--                      <li class="rd-nav-item active"><a class="rd-nav-link" href="index.html">Home</a>-->
                       </li>
-                      <li class="rd-nav-item"><a class="rd-nav-link" >查看你的个人信息</a>
-                        <!-- RD Navbar Dropdown-->
-                        <ul class="rd-menu rd-navbar-dropdown">
-                          <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="/user">点击查看</a></li>
-                          <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="/CrudUser">点击修改</a></li>
-                          <li class="rd-dropdown-item" id="admin-link" style="display: none;">
-                            <a class="rd-dropdown-link" href="/admin">管理员修改处</a>
-                          </li>
-<!--                          <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="/admin">管理员修改处</a></li>-->
-                        </ul>
-                      </li>
+<!--                      <li class="rd-nav-item"><a class="rd-nav-link" >查看你的个人信息</a>-->
+<!--                        &lt;!&ndash; RD Navbar Dropdown&ndash;&gt;-->
+<!--                        <ul class="rd-menu rd-navbar-dropdown">-->
+<!--                          <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="/user">点击查看</a></li>-->
+<!--                          <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="/CrudUser">点击修改</a></li>-->
+<!--                          <li class="rd-dropdown-item" id="admin-link" style="display: none;">-->
+<!--                            <a class="rd-dropdown-link" href="/admin">管理员修改处</a>-->
+<!--                          </li>-->
+<!--&lt;!&ndash;                          <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="/admin">管理员修改处</a></li>&ndash;&gt;-->
+<!--                        </ul>-->
+<!--                      </li>-->
                       <li class="rd-nav-item"><a class="rd-nav-link" href="/music">音乐首页</a>
                       </li>
-                      <li class="rd-nav-item"><a class="rd-nav-link" href="#">留言板</a>
+                      <li class="rd-nav-item"><a class="rd-nav-link" href="/xinghuo">有问必答</a>
+                      </li>
+                      <li class="rd-nav-item"><a class="rd-nav-link" href="/liuyanban">留言板</a>
                         <!-- RD Navbar Megamenu-->
                         <ul class="rd-menu rd-navbar-megamenu">
                           <li class="rd-megamenu-item">
-                            <h6 class="rd-megamenu-title">Pages 1</h6>
+                            <h6 class="rd-megamenu-title">个人留言板功能</h6>
                             <ul class="rd-megamenu-list">
-                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="typography.html">Typography</a></li>
-                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="buttons.html">Buttons</a></li>
-                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="timers-&amp;-counters.html">Timers &amp; Counters</a></li>
-                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="forms.html">Forms</a></li>
+<!--                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="/Crudlyb">Crudlyb</a></li>-->
+<!--                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="/test">test</a></li>-->
+                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="/UserNews">修改你的留言板</a></li>
+<!--                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="forms.html">Forms</a></li>-->
                             </ul>
                           </li>
-                          <li class="rd-megamenu-item">
-                            <h6 class="rd-megamenu-title">Pages 2</h6>
-                            <ul class="rd-megamenu-list">
-                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="grid-system.html">Grid system</a></li>
-                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="icon-lists.html">Icon Lists</a></li>
-                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="privacy-policy.html">Privacy policy</a></li>
-                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="coming-soon.html">Coming Soon</a></li>
-                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="search-results.html">Search results</a></li>
-                            </ul>
-                          </li>
-                          <li class="rd-megamenu-item">
-                            <h6 class="rd-megamenu-title">Pages 3</h6>
-                            <ul class="rd-megamenu-list">
-                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="gallery-1.html">Gallery 1</a></li>
-                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="gallery-2.html">Gallery 2</a></li>
-                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="news.html">News</a></li>
-                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="news-2.html">News 2</a></li>
-                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="blog-post.html">Blog Post</a></li>
-                            </ul>
-                          </li>
+<!--                          <li class="rd-megamenu-item">-->
+<!--                            <h6 class="rd-megamenu-title">Pages 2</h6>-->
+<!--                            <ul class="rd-megamenu-list">-->
+<!--                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="grid-system.html">Grid system</a></li>-->
+<!--                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="icon-lists.html">Icon Lists</a></li>-->
+<!--                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="privacy-policy.html">Privacy policy</a></li>-->
+<!--                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="coming-soon.html">Coming Soon</a></li>-->
+<!--                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="search-results.html">Search results</a></li>-->
+<!--                            </ul>-->
+<!--                          </li>-->
+<!--                          <li class="rd-megamenu-item">-->
+<!--                            <h6 class="rd-megamenu-title">Pages 3</h6>-->
+<!--                            <ul class="rd-megamenu-list">-->
+<!--                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="gallery-1.html">Gallery 1</a></li>-->
+<!--                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="gallery-2.html">Gallery 2</a></li>-->
+<!--                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="news.html">News</a></li>-->
+<!--                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="news-2.html">News 2</a></li>-->
+<!--                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="blog-post.html">Blog Post</a></li>-->
+<!--                            </ul>-->
+<!--                          </li>-->
                         </ul>
                       </li>
                       <li class="rd-nav-item"><a class="rd-nav-link" href="/houtaiindex">后台</a>
                       </li>
+<!--                      <li class="rd-nav-item"><a class="rd-nav-link" href="/houtaiindex1">测试后台</a>-->
+<!--                      </li>-->
                     </ul><a class="button button-default-outline button-md" href="/login">登出</a>
                   </div>
                 </div>
@@ -532,7 +537,7 @@
               <div class="col-12 col-lg-6 wow-outer">
                 <div class="wow fadeInUp text-center text-lg-left">
                   <h3>即刻出发</h3>
-                  <h4 class="text-opacity-80 font-weight-regular offset">点击即可速度听歌.</h4><a class="button button-lg button-secondary" href="#">Get Started</a>
+                  <h4 class="text-opacity-80 font-weight-regular offset">点击即可速度听歌.</h4><a class="button button-lg button-secondary" href="/music">Get Started</a>
                 </div>
               </div>
             </div>
@@ -694,5 +699,18 @@
             });
 
   </script>
+
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

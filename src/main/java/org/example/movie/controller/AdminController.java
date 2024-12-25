@@ -10,6 +10,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/admin") // 确保这个路径与 URL 匹配
 public class AdminController {
@@ -29,6 +32,16 @@ public class AdminController {
         model.addAttribute("user", user);
         return "Admin/admin";  // 返回用户列表页面
     }
+
+    // 提供用户数量的 REST API
+    @GetMapping("/api/total-users")
+    public Map<String, Long> getTotalUsers() {
+        long totalUsers = userService.getTotalUsers(); // 获取用户总数
+        Map<String, Long> response = new HashMap<>();
+        response.put("totalUsers", totalUsers); // 将用户数放入 Map 中返回
+        return response;
+    }
+
 
     // 处理用户修改请求
     @PostMapping("/edit/{id}")
