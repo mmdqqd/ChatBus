@@ -262,7 +262,7 @@
     };
 
     window.deleteNews = function (id) {
-      if (confirm("Are you sure you want to delete this news?")) {
+      if (confirm("你确定删除吗?")) {
         $.ajax({
           url: `/api/news/${id}`,
           method: "DELETE",

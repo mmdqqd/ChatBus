@@ -126,6 +126,8 @@
       });
     }
 
+    // <img src="${news.avatarUrl}" height="200" width="200" alt="${news.username} 图片"/>
+    //想加入图片把上述代码插入下表
     // 渲染留言列表
     function renderNewsList(newsList) {
       let html = "";
@@ -133,7 +135,7 @@
         html += `
                         <div class="card mb-3 shadow-sm">
                             <div class="card-body">
-                            <img src="${news.avatarUrl}" height="200" width="200" alt="${news.username} 图片">
+
                                <h5 class="card-title">用户: ${news.username}</h5>
                                 <p class="card-text">留言内容: ${news.content}</p>
                                 <p class="text-muted">邮箱: ${news.email} | 电话: ${news.phone}</p>
@@ -215,7 +217,6 @@
 
   });
 </script>
-
 
 
 </body>

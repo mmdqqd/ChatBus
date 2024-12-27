@@ -10,6 +10,13 @@
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+  <!-- 引入 Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- 引入 Bootstrap JS 和 Popper.js (必需的依赖) -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <style>
     .bi {
@@ -44,6 +51,53 @@
     }
 
 
+    /* 去掉默认的下划线 */
+    #out{
+      text-decoration: none;  /* 去掉下划线 */
+      display: inline-flex;    /* 使用 Flexbox 来实现居中 */
+      align-items: center;     /* 垂直居中 */
+      justify-content: center; /* 水平居中 */
+      padding: 10px 20px;      /* 添加一些内边距 */
+      border-radius: 5px;      /* 圆角效果 */
+      background-color: #007bff; /* 背景颜色 */
+      color: white;            /* 文字颜色 */
+      font-size: 16px;         /* 文字大小 */
+      border: 2px solid #007bff; /* 边框颜色和背景色一致 */
+      transition: all 0.3s ease; /* 添加过渡效果 */
+    }
+
+    /* 鼠标悬停时的效果 */
+    #out:hover {
+      background-color: #0056b3; /* 更深的背景颜色 */
+      border-color: #0056b3;     /* 边框颜色 */
+      color: white;              /* 保持文字颜色 */
+    }
+    .dropdown-menu {
+      background-color: #007bff;  /* 设置背景颜色为蓝色 */
+      color: white;               /* 设置文字颜色为白色 */
+      border-radius: 5px;         /* 添加圆角效果 */
+      padding: 10px 0;            /* 调整内边距 */
+      min-width: 200px;           /* 设置最小宽度 */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+    }
+
+    /* 删除默认的内边距、外边距等 */
+    .dropdown-menu li {
+      padding: 0; /* 去掉li元素的内边距 */
+      margin: 0;  /* 去掉li元素的外边距 */
+    }
+
+    .dropdown-item {
+      color: white; /* 设置文字颜色为白色 */
+      padding: 10px 20px; /* 添加一些内边距来增加按钮的大小 */
+      border-radius: 5px; /* 为每个菜单项添加圆角 */
+      transition: background-color 0.3s; /* 添加过渡效果 */
+    }
+    /* 鼠标点击时的效果 */
+    #out:active {
+      background-color: #003366; /* 更深的背景颜色 */
+      border-color: #003366;     /* 边框颜色 */
+    }
     .bd-mode-toggle .dropdown-menu .active .bi {
       display: block !important;
     }
@@ -100,15 +154,24 @@
       <li id="tu-link">
         <a href="/tubiao" class="nav-link text-white">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-          数据图统计
+          前台数据图统计
         </a>
       </li>
     </ul>
     <hr>
     <div class="dropdown">
+      <!-- 触发上拉框的按钮 -->
       <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         <div class="h_user"></div>
       </a>
+
+      <!-- 上拉框 -->
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" style="position: absolute; bottom: 100%; left: 0;">
+        <li>
+          <!-- 登出按钮，点击时触发登出操作 -->
+          <a class="button button-default-outline button-md" id="out" href="/login">登出</a>
+        </li>
+      </ul>
     </div>
   </div>
   <!-- 右侧内容 -->

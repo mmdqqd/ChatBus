@@ -243,7 +243,7 @@
         url: `/api/news/${id}`,
         method: "GET",
         success: function (data) {
-          $('#avatarUrl').attr('src', data.avatarUrl);
+          // $('#avatarUrl').attr('src', data.avatarUrl);
           $('#newsId').val(data.id);
           $('#username').val(data.username);
           $('#content').val(data.content);
@@ -252,6 +252,7 @@
           $('#createdAt').val(data.createdAt);
           $('#updatedAt').val(data.updatedAt);
           $('#neibie').val(data.neibie);
+
         },
         error: function () {
           alert("Error loading news data for editing!");
@@ -260,7 +261,7 @@
     };
 
     window.deleteNews = function (id) {
-      if (confirm("Are you sure you want to delete this news?")) {
+      if (confirm("你确定删除吗?")) {
         $.ajax({
           url: `/api/news/${id}`,
           method: "DELETE",
