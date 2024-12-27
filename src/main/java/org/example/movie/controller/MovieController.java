@@ -118,7 +118,8 @@ public ResponseEntity<Movie> addMovie(
             Files.copy(moviePng.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 
             // 设置电影图片的 URL
-            newMovie.setMoviePng("http://localhost:8080/images/moviePng/" + fileName);
+            newMovie.setMoviePng("http://localhost:8080/images/moviePng/" + fileName+ "?v=" + System.currentTimeMillis());
+
         }
 
         // 保存新的电影到数据库

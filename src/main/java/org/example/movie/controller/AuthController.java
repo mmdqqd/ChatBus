@@ -101,6 +101,12 @@ public class AuthController {
         return "Houtai/houtaiindex1";  // 返回 houtai.html 页面
     }
 
+    @GetMapping("/chat")
+    public String chat() {
+        return "Chat/chat";  // 返回 chat.html 页面
+    }
+
+
     @GetMapping("/admin")
     public String admin(Model model) {
         List<UserEntity> users = userRepository.findAll();
