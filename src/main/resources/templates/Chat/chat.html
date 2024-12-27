@@ -98,71 +98,6 @@
     </header>
 </div>
 
-<!--<div id="messages"></div>-->
-<!--<input type="text" id="messageInput" placeholder="请输入消息..." />-->
-<!--<button type="submit" class="btn btn-primary" onclick="sendMessage()">发送</button>-->
-
-
-<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
-<!--<script>-->
-<!--    let currentUser = ''; // 当前用户的用户名-->
-<!--    let userRole = ''; // 用户角色（身份）-->
-<!--    const socket = new WebSocket('ws://localhost:8080/chat1'); // WebSocket 连接-->
-
-<!--    // 获取当前用户的用户名和角色-->
-<!--    $(document).ready(function () {-->
-<!--        $.ajax({-->
-<!--            url: '/role',  // 假设这是获取当前用户名的接口-->
-<!--            method: "GET",-->
-<!--            success: function (data) {-->
-<!--                currentUser = data.username; // 保存当前用户名-->
-<!--                userRole = data.role; // 假设接口返回的数据中有角色字段-->
-<!--            },-->
-<!--            error: function () {-->
-<!--                alert("Error fetching user data!");-->
-<!--            }-->
-<!--        });-->
-<!--    });-->
-
-<!--    // 监听 WebSocket 消息-->
-<!--    socket.onmessage = function(event) {-->
-<!--        const messagesDiv = document.getElementById('messages');-->
-<!--        const messageData = JSON.parse(event.data);  // 解析消息数据-->
-<!--        const messageElement = document.createElement('div');-->
-<!--        messageElement.classList.add('message');-->
-
-<!--        // 判断消息的发送者，并设置显示位置-->
-<!--        if (messageData.username === currentUser) {-->
-<!--            messageElement.classList.add('my-message');-->
-<!--        } else {-->
-<!--            messageElement.classList.add('other-message');-->
-<!--        }-->
-
-<!--        messageElement.textContent = `${messageData.username}: ${messageData.message}`;-->
-<!--        messagesDiv.appendChild(messageElement);-->
-<!--        messagesDiv.scrollTop = messagesDiv.scrollHeight; // 始终滚动到底部-->
-<!--    };-->
-
-<!--    // 发送消息-->
-<!--    function sendMessage() {-->
-<!--        const messageInput = document.getElementById('messageInput');-->
-<!--        const message = messageInput.value.trim();  // 获取输入框中的消息内容-->
-<!--        if (message && currentUser) {-->
-<!--            // 将用户名和消息一起发送到 WebSocket 服务器-->
-<!--            const messageData = {-->
-<!--                username: currentUser,-->
-<!--                message: message-->
-<!--            };-->
-<!--            socket.send(JSON.stringify(messageData)); // 通过 WebSocket 发送消息-->
-<!--            messageInput.value = ''; // 清空输入框-->
-<!--        } else {-->
-<!--            alert("请输入消息或确保已获取用户名！");-->
-<!--        }-->
-<!--    }-->
-<!--</script>-->
-
-
-
 <div id="messages" ></div>
 <input type="text" id="messageInput" placeholder="请输入消息..." />
 <button type="submit" class="btn btn-primary" onclick="sendMessage()">发送</button>
@@ -171,11 +106,11 @@
 <div id="privateChatContainer" style="display: none;">
     <div id="privateChatHeader">
         <span id="privateChatUsername"></span>
-        <button onclick="closePrivateChat()">关闭</button>
+        <button type="submit" class="btn btn-danger" onclick="closePrivateChat()">关闭</button>
     </div>
     <div id="privateMessages"></div>
     <input type="text" id="privateMessageInput" placeholder="请输入私聊消息..." />
-    <button onclick="sendPrivateMessage()">发送私聊消息</button>
+    <button type="submit" class="btn btn-primary" onclick="sendPrivateMessage()">发送私聊消息</button>
 </div>
 
 <script>
