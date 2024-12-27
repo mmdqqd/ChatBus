@@ -20,69 +20,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-//public class ChatHandler extends TextWebSocketHandler {
-//
-//    private Set<WebSocketSession> sessions = new HashSet<>();
-//    private ObjectMapper objectMapper = new ObjectMapper();  // 用于解析 JSON 消息
-//
-//    @Override
-//    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-//        sessions.add(session);
-//        System.out.println("新客户端连接: " + session.getId());
-//    }
-//
-//    @Override
-//    public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-//        // 解析收到的消息（包含用户名和消息内容）
-//        String payload = message.getPayload();
-//        try {
-//            // 解析消息 JSON
-//            MessageModel messageModel = objectMapper.readValue(payload, MessageModel.class);
-//
-//            // 直接发送结构化的 JSON 数据给所有连接的客户端
-//            for (WebSocketSession webSocketSession : sessions) {
-//                if (webSocketSession.isOpen()) {
-//                    // 这里发送的是原始的消息数据，而不是格式化的字符串
-//                    String responseMessage = objectMapper.writeValueAsString(messageModel); // 将 messageModel 转换为 JSON 字符串
-//                    webSocketSession.sendMessage(new TextMessage(responseMessage));
-//                }
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    @Override
-//    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-//        sessions.remove(session);
-//        System.out.println("客户端断开连接: " + session.getId());
-//    }
-//
-//    // 消息模型，用来表示收到的消息和用户名
-//    public static class MessageModel {
-//        private String username;
-//        private String message;
-//
-//        // Getters 和 Setters
-//        public String getUsername() {
-//            return username;
-//        }
-//
-//        public void setUsername(String username) {
-//            this.username = username;
-//        }
-//
-//        public String getMessage() {
-//            return message;
-//        }
-//
-//        public void setMessage(String message) {
-//            this.message = message;
-//        }
-//    }
-//}
-//
-
 @Component
 public class ChatHandler extends TextWebSocketHandler {
 
