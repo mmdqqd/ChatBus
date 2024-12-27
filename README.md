@@ -1,5 +1,5 @@
 # 24.12.3
-实现简单的功能springboot+bootstrap编写，登陆注册用springsecurity实现。
+实现简单的功能springboot+bootstrap编写，登陆注册用springsecurity实现,数据库使用MySql。
 
 # 24.12.4
 在校生完成的一次课堂作业，时间很仓促随便写的，如果有很多bug请多多见谅。很多功能没有实现，只实现了第一点的功能。
