@@ -11,7 +11,7 @@
  Target Server Version : 80033
  File Encoding         : 65001
 
- Date: 27/12/2024 08:36:00
+ Date: 04/12/2024 10:26:37
 */
 
 SET NAMES utf8mb4;
@@ -29,12 +29,12 @@ CREATE TABLE `movie`  (
   `movie_evaluate` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `movie_png` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 267 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 259 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of movie
 -- ----------------------------
-INSERT INTO `movie` VALUES (3, '阿甘正传', '导演: 罗伯特·泽米吉斯 Robert Zemeckis 主演: 汤姆·汉克斯 Tom Hanks / ... 1994 / 美国 / 剧情 爱情', '9.7', '一部美国近现代史。', 'http://localhost:8080/images/moviePng/abcd.png');
+INSERT INTO `movie` VALUES (3, '阿甘正传', '导演: 罗伯特·泽米吉斯 Robert Zemeckis 主演: 汤姆·汉克斯 Tom Hanks / ... 1994 / 美国 / 剧情 爱情', '9.6', '一部美国近现代史。', 'http://localhost:8080/images/moviePng/abc.png');
 INSERT INTO `movie` VALUES (4, '泰坦尼克号', '导演: 詹姆斯·卡梅隆 James Cameron 主演: 莱昂纳多·迪卡普里奥 Leonardo... 1997 / 美国 墨西哥 / 剧情 爱情 灾难', '9.6', '失去的才是永恒的。', 'http://localhost:8080/images/moviePng/abcd.png');
 INSERT INTO `movie` VALUES (5, '千与千寻', '导演: 宫崎骏 Hayao Miyazaki 主演: 柊瑠美 Rumi Hîragi / 入野自由 Miy... 2001 / 日本 / 剧情 动画 奇幻', '9.5', '最好的宫崎骏，最好的久石让。', NULL);
 INSERT INTO `movie` VALUES (6, '美丽人生', '导演: 罗伯托·贝尼尼 Roberto Benigni 主演: 罗伯托·贝尼尼 Roberto Beni... 1997 / 意大利 / 剧情 喜剧 爱情 战争', '10', '最美的谎言。', NULL);
@@ -284,86 +284,7 @@ INSERT INTO `movie` VALUES (249, '朗读者', '导演: 史蒂芬·戴德利 Step
 INSERT INTO `movie` VALUES (250, '阿飞正传', '导演: 王家卫 Kar Wai Wong 主演: 张国荣 Leslie Cheung / 张曼玉 Maggie C... 1990 / 中国香港 / 犯罪 剧情 爱情', '8.5', '王家卫是一种风格，张国荣是一个代表。', NULL);
 INSERT INTO `movie` VALUES (256, '2', '', '5.3', '2', NULL);
 INSERT INTO `movie` VALUES (257, 'a', '', '6.3', '', NULL);
-INSERT INTO `movie` VALUES (259, '1', '', '5.3', '', 'http://localhost:8080/images/moviePng/abcd.png');
-INSERT INTO `movie` VALUES (260, '6666666', '666666666', '6.6', '666666666666', 'http://localhost:8080/images/moviePng/abcd.png');
-INSERT INTO `movie` VALUES (263, '3333333333333', '666666666666', '3.3', '3333', 'http://localhost:8080/images/moviePng/abcd.png');
-INSERT INTO `movie` VALUES (268, '5555', '5555555', '5.5', '555555555', 'http://localhost:8080/images/moviePng/1.png');
-INSERT INTO `movie` VALUES (269, '5555', '5555555', '5.5', '888888888', 'http://localhost:8080/images/moviePng/123.png');
-INSERT INTO `movie` VALUES (270, 'ces', 'ces', '5.5', '555555', 'http://localhost:8080/images/moviePng/1.png');
-INSERT INTO `movie` VALUES (271, '测试', '测试', '5.6', '666', 'http://localhost:8080/images/moviePng/1.png?v=1735257894051');
-
--- ----------------------------
--- Table structure for music
--- ----------------------------
-DROP TABLE IF EXISTS `music`;
-CREATE TABLE `music`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT,
-  `music_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `music_like` int(0) NULL DEFAULT NULL,
-  `music_not_like` int(0) NULL DEFAULT NULL,
-  `music_png` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `music_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of music
--- ----------------------------
-INSERT INTO `music` VALUES (1, '李白', 30, 19, 'http://localhost:8080/images/musicPng/123.png', 'http://localhost:8080/music/160.mp3');
-INSERT INTO `music` VALUES (2, 'sugars', 5, 9, 'http://localhost:8080/images/musicPng/123.png', 'http://localhost:8080/music/160.mp3');
-INSERT INTO `music` VALUES (7, '将进酒', 22, 20, 'http://localhost:8080/images/musicPng/123.png', 'http://localhost:8080/music/160.mp3');
-INSERT INTO `music` VALUES (8, 'ABC', 11, 3, 'http://localhost:8080/images/musicPng/123.png', 'http://localhost:8080/music/160.mp3');
-INSERT INTO `music` VALUES (9, '阳光彩虹小白马', 50, 4, 'http://localhost:8080/images/musicPng/123.png', 'http://localhost:8080/music/160.mp3');
-INSERT INTO `music` VALUES (10, '将进酒', 16, 6, 'http://localhost:8080/images/musicPng/123.png', 'http://localhost:8080/music/160.mp3');
-INSERT INTO `music` VALUES (21, '10', 5, 5, 'http://localhost:8080/images/musicPng/123.png', 'http://localhost:8080/music/160.mp3');
-INSERT INTO `music` VALUES (22, '66', 6, 6, 'http://localhost:8080/images/musicPng/123.png', 'http://localhost:8080/music/161.mp3');
-INSERT INTO `music` VALUES (23, '9999', 9, 9, 'http://localhost:8080/images/musicPng/abcd5.png?v=1735029718467', 'http://localhost:8080/music/1735029718467160.mp3?v=1735029718482');
-INSERT INTO `music` VALUES (24, '20', 5, 5, 'http://localhost:8080/images/musicPng/1.png?v=1735093674738', 'http://localhost:8080/music/1610336364110.mp3?v=1735093674753');
-
--- ----------------------------
--- Table structure for news
--- ----------------------------
-DROP TABLE IF EXISTS `news`;
-CREATE TABLE `news`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `avatar_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `phone` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `created_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0),
-  `neibie` enum('电影','音乐','建议') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `module` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `username`(`username`) USING BTREE,
-  CONSTRAINT `news_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user_entity` (`username`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of news
--- ----------------------------
-INSERT INTO `news` VALUES (8, '555', NULL, '管理员留言内容。66', 'admin1@example.com', '0987654321', '2024-12-18 10:15:45', '2024-12-22 01:40:41', '音乐', NULL);
-INSERT INTO `news` VALUES (9, 'admin', 'http://localhost:8080/images/moviePng/abc.png', '44444', 'user123@example.com', '1234567890', '2024-12-18 10:16:18', '2024-12-22 09:09:11', '电影', '电影');
-INSERT INTO `news` VALUES (10, 'user', 'http://localhost:8080/images/moviePng/abc.png', '66。', 'admin1@example.com', '0987654321', '2024-12-18 10:16:18', '2024-12-19 10:33:27', '建议', '建议');
-INSERT INTO `news` VALUES (11, '777', 'http://localhost:8080/images/moviePng/abc.png', '555', 'user123@example.com', '1234567890', '2024-12-18 10:16:25', '2024-12-22 09:09:11', '音乐', '音乐');
-INSERT INTO `news` VALUES (13, '333', NULL, '什么意思111', '17821312@qq.com', '1235124111', '2024-12-17 19:24:23', '2024-12-22 01:11:39', '电影', NULL);
-INSERT INTO `news` VALUES (19, '333', NULL, '测试3', '123456@11', '123456666666666666666', '2024-12-22 01:08:24', '2024-12-22 01:12:17', '电影', NULL);
-INSERT INTO `news` VALUES (20, '333', NULL, '测试', '123456@11', '1111111111111', '2024-12-23 02:19:44', '2024-12-23 02:19:44', '建议', NULL);
-INSERT INTO `news` VALUES (21, '333', NULL, '555555555', '55555555@qq', '55555555', '2024-12-26 09:21:19', '2024-12-26 09:21:19', '电影', NULL);
-
--- ----------------------------
--- Table structure for private_messages
--- ----------------------------
-DROP TABLE IF EXISTS `private_messages`;
-CREATE TABLE `private_messages`  (
-  `id` bigint(0) NOT NULL AUTO_INCREMENT,
-  `sendername` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `receivername` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  `timestamp` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0),
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+INSERT INTO `movie` VALUES (259, '1', '', '5.3', '', NULL);
 
 -- ----------------------------
 -- Table structure for user_entity
@@ -374,9 +295,8 @@ CREATE TABLE `user_entity`  (
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `idx_username`(`username`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_entity
@@ -384,8 +304,7 @@ CREATE TABLE `user_entity`  (
 INSERT INTO `user_entity` VALUES (2, '$2a$10$C3XnNLVE0vP9yNVH9tuC8.0R5DyasHjee2iGUwK0UDMelGTjdvpxW', 'ADMIN', 'admin');
 INSERT INTO `user_entity` VALUES (3, '$2a$10$MKhG.UvL9jtp10TF9xe4YuTVb5VzXdxCJdccJscTPXsq.eVjS5V22', 'USER', 'user');
 INSERT INTO `user_entity` VALUES (4, '$2a$10$bzPzAWKHeZKJkehyI.I0X.FyH2k34vxmhl4/j49BlLCUq.f5uPX/q', 'ADMIN', '333');
-INSERT INTO `user_entity` VALUES (15, '$2a$10$8OFob5n.neZmNOIkPUkrluG.ZX2P0HgN7pLMDmLkaVcoJ996zYS2u', 'USER', '555');
+INSERT INTO `user_entity` VALUES (15, '$2a$10$WgLkhHJQZQbMkws/nGxPJe3FKcvu0BCnvYP6kePhIYXlMJceqDC0m', 'USER', '555');
 INSERT INTO `user_entity` VALUES (16, '$2a$10$GbKr7KEzaDMMkr4MijOASub0hx21g5SoGb2hQtSFv5.TKkiQm7q5i', 'USER', '777');
-INSERT INTO `user_entity` VALUES (17, '$2a$10$/amDjYIw29YP.j7C49Pp1OtJt5NVpA07LmBYK/C6dKc5n4B3DXCXC', 'ADMIN', '888');
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/fonts.css">
     <link rel="stylesheet" href="/css/style.css">
@@ -29,6 +30,7 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+
         }
         .message {
             max-width: 80%;
@@ -69,6 +71,13 @@
             word-wrap: break-word;      /* 自动换行 */
         }
 
+        /* 发送者的私聊消息 */
+        .my-private-message {
+            background-color: #e0ffe0;
+            text-align: right;
+        }
+
+
         /* 其他消息的样式 */
         .my-message {
             background-color: #d3f8d3; /* 可以自定义我的消息的背景颜色 */
@@ -82,6 +91,23 @@
             border-radius: 8px;
             padding: 10px;
             margin-bottom: 10px;
+        }
+        /* 确保表情选择器位于其他元素下方，但不在最上层 */
+        #emoji-picker {
+            position: fixed;
+            bottom: 10px;        /* 固定在页面底部 */
+            left: 90%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: none;       /* 默认隐藏 */
+        }
+        #emoji-picker-private {
+            position: fixed;
+            bottom: 10px;        /* 固定在页面底部 */
+            left: 10%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: none;       /* 默认隐藏 */
         }
     </style>
 </head>
@@ -100,8 +126,11 @@
 
 <div id="messages" ></div>
 <input type="text" id="messageInput" placeholder="请输入消息..." />
-<button type="submit" class="btn btn-primary" onclick="sendMessage()">发送</button>
-
+<button type="button" class="btn btn-light" id="emoji-btn">😊</button>
+<button type="submit" class="btn btn-primary" id="send" onclick="sendMessage()">发送</button>
+<!-- 表情选择器 -->
+<emoji-picker id="emoji-picker"></emoji-picker>
+<emoji-picker id="emoji-picker-private"></emoji-picker>
 <!-- 私聊框模板 -->
 <div id="privateChatContainer" style="display: none;">
     <div id="privateChatHeader">
@@ -110,9 +139,29 @@
     </div>
     <div id="privateMessages"></div>
     <input type="text" id="privateMessageInput" placeholder="请输入私聊消息..." />
+    <button type="button" class="btn btn-light" id="emoji-btn-private">😊</button>
     <button type="submit" class="btn btn-primary" onclick="sendPrivateMessage()">发送私聊消息</button>
 </div>
-
+<script>
+    document.getElementById('emoji-btn-private').addEventListener('click', function() {
+        var emojiPicker = document.getElementById('emoji-picker-private');
+        if (emojiPicker.style.display === 'none') {
+            emojiPicker.style.display = 'block'; // 如果是隐藏状态，则显示
+        } else {
+            emojiPicker.style.display = 'none'; // 否则隐藏
+        }
+    });
+</script>
+<script>
+    document.getElementById('emoji-btn').addEventListener('click', function() {
+        var emojiPicker = document.getElementById('emoji-picker');
+        if (emojiPicker.style.display === 'none') {
+            emojiPicker.style.display = 'block'; // 如果是隐藏状态，则显示
+        } else {
+            emojiPicker.style.display = 'none'; // 否则隐藏
+        }
+    });
+</script>
 <script>
     let currentUser = '';  // 当前用户名
     let userRole = '';     // 用户角色
@@ -138,34 +187,40 @@
                     const messageElement = document.createElement('div');
                     messageElement.classList.add('message');
 
-                    // 判断消息的发送者，并设置显示位置
-                    if (messageData.username === currentUser) {
-                        messageElement.classList.add('my-message');
-                    } else {
-                        messageElement.classList.add('other-message');
-                    }
-
-                    // // 判断消息类型（私聊或公共消息）
-                    // if (messageData.receiver === null) {  // 公共消息
-                    //     // 判断消息的发送者，并设置显示位置
-                    //     if (messageData.username === currentUser) {
-                    //         messageElement.classList.add('my-message');
-                    //     } else {
-                    //         messageElement.classList.add('other-message');
-                    //     }
-                        // 显示公共消息，格式是 "sender: message"
-                        messageElement.textContent = messageData.username + ": " + messageData.message;
-
-                    //     // 构建消息的 HTML
-                    // messageElement.textContent = `${messageData.username}: ${messageData.message}`;
-
+                        // messageElement.textContent = messageData.username + ": " + messageData.message;
                     // 为整个消息区域添加点击事件，点击时打开私聊框
                     messageElement.onclick = function() {
                         openPrivateChat(messageData.username);  // 点击消息时打开私聊框
                     };
 
-                    // 将消息元素添加到聊天容器中
-                    messagesDiv.appendChild(messageElement);
+                    // // 将消息元素添加到聊天容器中
+                    // messagesDiv.appendChild(messageElement);
+                    // 判断消息是否为私聊消息
+                    if (messageData.receiver) {
+                        // 如果是私聊消息，且当前用户是接收者，才显示
+                        if (messageData.receiver === currentUser) {
+                            messageElement.classList.add('private-message');
+                            messageElement.textContent = messageData.username + " (私聊): " + messageData.message;
+                            messagesDiv.appendChild(messageElement);
+                        }
+
+                        // 如果是发送者，自己也能看到私聊消息
+                        if (messageData.username === currentUser) {
+                            messageElement.classList.add('my-private-message');  // 自己发送的私聊消息的样式
+                            messageElement.textContent = messageData.username + " (私聊): " + messageData.message;
+                            messagesDiv.appendChild(messageElement);
+                        }
+                    } else {
+                        // 公共消息
+                        if (messageData.username === currentUser) {
+                            messageElement.classList.add('my-message');
+                        } else {
+                            messageElement.classList.add('other-message');
+                        }
+                        messageElement.textContent = messageData.username + ": " + messageData.message;
+                        messagesDiv.appendChild(messageElement);
+                    }
+
                     messagesDiv.scrollTop = messagesDiv.scrollHeight;  // 始终滚动到底部
                 };
 
@@ -174,6 +229,13 @@
                 alert("Error fetching user data!");
             }
         });
+    });
+
+    // 当用户选择表情时，插入到输入框
+    document.getElementById('emoji-picker').addEventListener('emoji-click', (event) => {
+        const emoji = event.detail.unicode;
+        const messageInput = document.getElementById('messageInput');
+        messageInput.value += emoji;  // 将表情添加到输入框
     });
 
     // 发送公共消息
@@ -206,13 +268,17 @@
         document.getElementById('privateChatUsername').textContent = '正在与 ' + username + ' 私聊';
         document.getElementById('privateChatContainer').style.display = 'block';
         document.getElementById('messageInput').style.display = 'none';
-
+        document.getElementById('emoji-btn').style.display = 'none';
+        document.getElementById('send').style.display = 'none';
         loadPrivateMessages(username);
     }
 
     // 关闭私聊框
     function closePrivateChat() {
         document.getElementById('privateChatContainer').style.display = 'none';
+        document.getElementById('messageInput').style.display = 'block';
+        document.getElementById('emoji-btn').style.display = 'block';
+        document.getElementById('send').style.display = 'block';
     }
 
     // 加载私聊消息
@@ -222,6 +288,15 @@
         privateMessagesDiv.innerHTML = ''; // 清空旧的消息
         // 假设此时我们没有历史记录，你可以从数据库或 WebSocket 获取这些消息
     }
+
+
+
+    // 当用户选择表情时，插入到私聊输入框
+    document.getElementById('emoji-picker-private').addEventListener('emoji-click', (event) => {
+        const emoji = event.detail.unicode;
+        const privateMessageInput = document.getElementById('privateMessageInput');
+        privateMessageInput.value += emoji;  // 将表情添加到输入框
+    });
 
     // 发送私聊消息
     function sendPrivateMessage() {
@@ -235,10 +310,14 @@
                 receiver: privateReceiver // 私聊消息的接收者
             };
 
+            // 在当前用户的私聊框中显示自己的消息
+            displayPrivateMessage(currentUser, messageData.message, 'my-private-message');
+
             if (socket && socket.readyState === WebSocket.OPEN) {
                 socket.send(JSON.stringify(messageData)); // 通过 WebSocket 发送私聊消息
                 privateMessageInput.value = ''; // 清空输入框
                 loadPrivateMessages(privateReceiver); // 加载最新的私聊消息
+
             } else {
                 alert("在线聊天室 未连接或已关闭！");
             }
@@ -246,9 +325,312 @@
             alert("请输入私聊消息！");
         }
     }
+    // 在私聊消息框中显示消息
+    function displayPrivateMessage(username, message, messageClass) {
+        const privateMessagesDiv = document.getElementById('privateMessages');
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message', messageClass); // 添加样式类，区分发送者和接收者
 
+        // 构建消息内容
+        messageElement.textContent = username + ": " + message;
 
+        // 将消息元素添加到私聊消息区域
+        privateMessagesDiv.appendChild(messageElement);
+
+        // 始终滚动到底部
+        privateMessagesDiv.scrollTop = privateMessagesDiv.scrollHeight;
+    }
 </script>
 
 </body>
 </html>
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="zh">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>WebSocket 聊天</title>-->
+<!--    <style>/* 保留原样式，确保现有布局不受影响 */-->
+<!--    body {-->
+<!--        font-family: Arial, sans-serif;-->
+<!--        display: flex;-->
+<!--        flex-direction: column;-->
+<!--        justify-content: center;-->
+<!--        align-items: center;-->
+<!--        height: 100vh;-->
+<!--        margin: 0;-->
+<!--    }-->
+
+<!--    /* #messages: 保留你的样式，并合并新的高度、滚动样式 */-->
+<!--    #messages {-->
+<!--        width: 80%;-->
+<!--        height: 400px;-->
+<!--        border: 1px solid #ddd;-->
+<!--        padding: 10px;-->
+<!--        overflow-y: scroll;-->
+<!--        display: flex;-->
+<!--        flex-direction: column;-->
+<!--        gap: 10px;-->
+<!--        max-height: 300px; /* 新样式的max-height */-->
+<!--    }-->
+
+<!--    /* .message: 保持一致性 */-->
+<!--    .message {-->
+<!--        max-width: 80%;-->
+<!--        padding: 10px;-->
+<!--        border-radius: 10px;-->
+<!--        display: inline-block;-->
+<!--        margin: 5px 0; /* 新样式的margin */-->
+<!--    }-->
+
+<!--    /* 对比自定义的用户消息和其他用户消息 */-->
+<!--    .my-message {-->
+<!--        background-color: #DCF8C6;  /* 设置当前用户消息的背景色 */-->
+<!--        text-align: right;  /* 右对齐 */-->
+<!--        align-self: flex-end;  /* 当前用户消息显示在右边 */-->
+<!--        background-color: #d3f8d3; /* 可以自定义我的消息的背景颜色 */-->
+<!--        border-radius: 8px;-->
+<!--        padding: 10px;-->
+<!--        margin-bottom: 10px;-->
+<!--    }-->
+
+<!--    .other-message {-->
+<!--        background-color: #FFF;  /* 设置其他用户消息的背景色 */-->
+<!--        text-align: left;  /* 左对齐 */-->
+<!--        align-self: flex-start;  /* 其他用户消息显示在左边 */-->
+<!--        background-color: #f1f1f1; /* 其他用户消息的背景颜色 */-->
+<!--        border-radius: 8px;-->
+<!--        padding: 10px;-->
+<!--        margin-bottom: 10px;-->
+<!--    }-->
+
+<!--    /* 私聊消息的样式 */-->
+<!--    .private-message {-->
+<!--        background-color: #FFF9C4; /* 浅黄色背景 */-->
+<!--        border-radius: 8px;         /* 圆角效果 */-->
+<!--        padding: 10px;              /* 内边距 */-->
+<!--        margin-bottom: 10px;        /* 底部间距 */-->
+<!--        max-width: 80%;             /* 最大宽度 */-->
+<!--        word-wrap: break-word;      /* 自动换行 */-->
+<!--    }-->
+
+<!--    /* 输入框和按钮样式 */-->
+<!--    input {-->
+<!--        width: 80%;-->
+<!--        padding: 10px;-->
+<!--        margin-top: 10px;-->
+<!--    }-->
+
+<!--    button {-->
+<!--        padding: 10px 20px;-->
+<!--        margin-top: 10px;-->
+<!--    }-->
+
+<!--    /* 处理私聊容器 (#privateChatContainer) 和表情选择器 (#emoji-picker) */-->
+<!--    #privateChatContainer {-->
+<!--        display: none;-->
+<!--        margin-top: 20px;-->
+<!--        padding: 10px;-->
+<!--        border: 1px solid #ccc;-->
+<!--    }-->
+
+<!--    #privateMessages {-->
+<!--        max-height: 200px;-->
+<!--        overflow-y: auto;-->
+<!--        margin-bottom: 10px;-->
+<!--    }-->
+
+<!--    /* 确保表情选择器位于其他元素下方，但不在最上层 */-->
+<!--    #emoji-picker {-->
+<!--      -->
+<!--        z-index: 10;           /* 设置较低的 z-index，确保它位于其他功能的下方 */-->
+<!--        bottom: 50px;          /* 让表情选择器距离底部一定距离（根据需要调整） */-->
+<!--    }-->
+
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div>-->
+<!--    <div id="messages"></div>-->
+<!--    <input type="text" id="messageInput" placeholder="请输入消息..." />-->
+<!--    <button type="button" class="btn btn-light" id="emoji-btn">😊</button>-->
+<!--    <button type="submit" class="btn btn-primary" onclick="sendMessage()">发送</button>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; 私聊框模板 &ndash;&gt;-->
+<!--<div id="privateChatContainer">-->
+<!--    <div id="privateChatHeader">-->
+<!--        <span id="privateChatUsername"></span>-->
+<!--        <button type="submit" class="btn btn-danger" onclick="closePrivateChat()">关闭</button>-->
+<!--    </div>-->
+<!--    <div id="privateMessages"></div>-->
+<!--    <input type="text" id="privateMessageInput" placeholder="请输入私聊消息..." />-->
+<!--    <button type="submit" class="btn btn-primary" onclick="sendPrivateMessage()">发送私聊消息</button>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; 表情选择器 &ndash;&gt;-->
+<!--<emoji-picker id="emoji-picker"></emoji-picker>-->
+
+<!--<script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>-->
+<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+
+<!--<script>-->
+<!--    let currentUser = '';  // 当前用户名-->
+<!--    let userRole = '';     // 用户角色-->
+<!--    let socket;            // WebSocket 连接变量-->
+<!--    let privateReceiver = ''; // 当前私聊接收者-->
+
+<!--    // 获取当前用户的用户名和角色，并初始化 WebSocket 连接-->
+<!--    $(document).ready(function () {-->
+<!--        $.ajax({-->
+<!--            url: '/role',  // 假设这是获取当前用户名的接口-->
+<!--            method: "GET",-->
+<!--            success: function (data) {-->
+<!--                currentUser = data.username;  // 保存当前用户名-->
+<!--                userRole = data.role;         // 保存用户角色-->
+
+<!--                // 初始化 WebSocket 连接-->
+<!--                socket = new WebSocket('ws://localhost:8080/chat1?username=' + currentUser);-->
+
+<!--                // 监听 WebSocket 消息-->
+<!--                socket.onmessage = function(event) {-->
+<!--                    const messagesDiv = document.getElementById('messages');-->
+<!--                    const messageData = JSON.parse(event.data);  // 解析消息数据-->
+<!--                    const messageElement = document.createElement('div');-->
+<!--                    messageElement.classList.add('message');-->
+
+<!--                    // 判断消息的发送者，并设置显示位置-->
+<!--                    if (messageData.username === currentUser) {-->
+<!--                        messageElement.classList.add('my-message');-->
+<!--                    } else {-->
+<!--                        messageElement.classList.add('other-message');-->
+<!--                    }-->
+
+<!--                    // 显示消息和表情-->
+<!--                    messageElement.innerHTML = messageData.username + ": " + parseEmojis(messageData.message);-->
+
+<!--                    // 为整个消息区域添加点击事件，点击时打开私聊框-->
+<!--                    messageElement.onclick = function() {-->
+<!--                        openPrivateChat(messageData.username);  // 点击消息时打开私聊框-->
+<!--                    };-->
+
+<!--                    // 将消息元素添加到聊天容器中-->
+<!--                    messagesDiv.appendChild(messageElement);-->
+<!--                    messagesDiv.scrollTop = messagesDiv.scrollHeight;  // 始终滚动到底部-->
+<!--                };-->
+<!--            },-->
+<!--            error: function () {-->
+<!--                alert("Error fetching user data!");-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+
+<!--    // 解析表情字符-->
+<!--    function parseEmojis(message) {-->
+<!--        // 这里用正则表达式识别和转换表情字符-->
+<!--        const emojiMap = {-->
+<!--            ':)': '😊',-->
+<!--            ':(': '☹️',-->
+<!--            ':P': '😜',-->
+<!--            ':-)': '😊',-->
+<!--            ':-(': '☹️',-->
+<!--            ';-)': '😉',-->
+<!--            ':D': '😀',-->
+<!--            ':love:': '❤️',-->
+<!--            // 你可以根据需求添加更多表情-->
+<!--        };-->
+
+<!--        // 替换消息中的表情字符-->
+<!--        return message.replace(/(:\)|:\(|:P|:-\)|:-\(|;-\)|:D|:love:)/g, match => emojiMap[match] || match);-->
+<!--    }-->
+
+<!--    // 显示表情选择器-->
+<!--    document.getElementById('emoji-btn').addEventListener('click', () => {-->
+<!--        const emojiPicker = document.getElementById('emoji-picker');-->
+<!--        emojiPicker.style.display = emojiPicker.style.display === 'none' ? 'block' : 'none'; // Toggle emoji picker visibility-->
+<!--    });-->
+
+<!--    // 当用户选择表情时，插入到输入框-->
+<!--    document.getElementById('emoji-picker').addEventListener('emoji-click', (event) => {-->
+<!--        const emoji = event.detail.unicode;-->
+<!--        const messageInput = document.getElementById('messageInput');-->
+<!--        messageInput.value += emoji;  // 将表情添加到输入框-->
+<!--    });-->
+
+<!--    // 发送公共消息-->
+<!--    function sendMessage() {-->
+<!--        const messageInput = document.getElementById('messageInput');-->
+<!--        const message = messageInput.value.trim();-->
+
+<!--        if (message && currentUser) {-->
+<!--            const messageData = {-->
+<!--                username: currentUser,-->
+<!--                message: message, // 包含表情符号的消息-->
+<!--                receiver: null  // null 表示广播消息-->
+<!--            };-->
+
+<!--            if (socket && socket.readyState === WebSocket.OPEN) {-->
+<!--                socket.send(JSON.stringify(messageData)); // 通过 WebSocket 发送消息-->
+<!--                messageInput.value = ''; // 清空输入框-->
+<!--            } else {-->
+<!--                alert("WebSocket 未连接或已关闭！");-->
+<!--            }-->
+<!--        } else {-->
+<!--            alert("请输入消息或确保已获取用户名！");-->
+<!--        }-->
+<!--    }-->
+
+<!--    // 打开私聊框-->
+<!--    function openPrivateChat(username) {-->
+<!--        privateReceiver = username;-->
+<!--        document.getElementById('privateChatUsername').textContent = '正在与 ' + username + ' 私聊';-->
+<!--        document.getElementById('privateChatContainer').style.display = 'block';-->
+<!--        document.getElementById('messageInput').style.display = 'none';-->
+
+<!--        loadPrivateMessages(username);-->
+<!--    }-->
+
+<!--    // 关闭私聊框-->
+<!--    function closePrivateChat() {-->
+<!--        document.getElementById('privateChatContainer').style.display = 'none';-->
+<!--    }-->
+
+<!--    // 加载私聊消息-->
+<!--    function loadPrivateMessages(username) {-->
+<!--        // 这里可以加载历史私聊消息，或者根据需要直接发送到 WebSocket-->
+<!--        const privateMessagesDiv = document.getElementById('privateMessages');-->
+<!--        privateMessagesDiv.innerHTML = ''; // 清空旧的消息-->
+<!--    }-->
+
+<!--    // 发送私聊消息-->
+<!--    function sendPrivateMessage() {-->
+<!--        const privateMessageInput = document.getElementById('privateMessageInput');-->
+<!--        const message = privateMessageInput.value.trim();-->
+
+<!--        if (message && privateReceiver) {-->
+<!--            const messageData = {-->
+<!--                username: currentUser,-->
+<!--                message: ' 正在和你说悄悄话: ' + message,  // 消息内容已包含提示-->
+<!--                receiver: privateReceiver // 私聊消息的接收者-->
+<!--            };-->
+
+<!--            if (socket && socket.readyState === WebSocket.OPEN) {-->
+<!--                socket.send(JSON.stringify(messageData)); // 通过 WebSocket 发送私聊消息-->
+<!--                privateMessageInput.value = ''; // 清空输入框-->
+<!--                loadPrivateMessages(privateReceiver); // 加载最新的私聊消息-->
+<!--            } else {-->
+<!--                alert("在线聊天室 未连接或已关闭！");-->
+<!--            }-->
+<!--        } else {-->
+<!--            alert("请输入私聊消息！");-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
